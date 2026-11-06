@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jurassic Park MUD 3D: Isla Nublar Survival (Frankenstein Track)</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"
+          integrity="sha384-CI3ELBVUz9XQO+97x6nwMDPosPR5XvsxW2ua7N1Xeygeh1IxtgqtCkGfQY9WWdHu"
+          crossorigin="anonymous"></script>
+  <style>
+    :root {
+      --crt-green: #33ff33;
+      --crt-bg: #050d05;
+      --border-color: #1a331a;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #020402;
+      color: var(--crt-green);
+      font-family: 'Courier New', Courier, monospace;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    header {
+      background: #000;
+      border-bottom: 2px solid var(--border-color);
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      font-size: 14px;
+      text-shadow: 0 0 8px rgba(51, 255, 51, 0.6);
+    }
+    .badge {
+      background: #112211;
+      padding: 3px 8px;
+      border-radius: 4px;
+      border: 1px solid var(--crt-green);
+      font-size: 12px;
+      display: inline-block;
+    }
+    .badge-btn { cursor: pointer; user-select: none; }
+    .badge-btn:hover { background: #225522; }
+    .badge-btn.live { border-color: #33ff33; color: #33ff33; }
+    .badge-btn.offline { border-color: #ff9900; color: #ff9900; }
+    #player-hp-badge.low { border-color: #ff3333; color: #ff5555; }
+    .main-view {
+      display: flex;
+      flex: 1;
+      min-height: 0;
+    }
+    .terminal-panel {
+      width: 42%;
+      background: var(--crt-bg);
+      border-right: 2px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      padding: 16px;
+      position: relative;
+      box-shadow: inset 0 0 20px rgba(0, 50, 0, 0.8);
+    }
+    .terminal-output {
+      flex: 1;
+      overflow-y: auto;
+      line-height: 1.6;
+      font-size: 13px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      padding-right: 8px;
+    }
+    .terminal-output::-webkit-scrollbar { width: 6px; }
+    .terminal-output::-webkit-scrollbar-thumb { background: #1a4d1a; border-radius: 3px; }
+    .echo { color: #88ff88; }
+    .warn { color: #ff9900; }
+    .danger { color: #ff5555; }
+    .good { color: #66ffee; }
+    .sys { color: #ffee55; }
+    .terminal-input-row {
+      display: flex;
+      margin-top: 12px;
+      border-top: 1px solid #113311;
+      padding-top: 10px;
+      align-items: center;
+    }
+    .prompt-label { margin-right: 8px; font-weight: bold; }
+    #mud-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--crt-green);
+      font-family: inherit;
+      font-size: 14px;
+      caret-color: var(--crt-green);
+      text-shadow: 0 0 5px rgba(51,255,51,0.5);
+    }
+    .three-panel { width: 58%; position: relative; background: #000; }
+    #hurt-vignette {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0;
+      background: radial-gradient(ellipse at center, rgba(220, 20, 20, 0) 35%, rgba(220, 20, 20, 0.45) 100%);
+      box-shadow: inset 0 0 120px 30px rgba(220, 20, 20, 0.45);
+    }
+    #hurt-vignette.hurt { animation: hurtFade 250ms ease-out forwards; }
+    @keyframes hurtFade { from { opacity: 1; } to { opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) { #hurt-vignette.hurt { animation-duration: 120ms; } }
+    .hud-overlay {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(0, 10, 0, 0.8);
+      border: 1px solid var(--crt-green);
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 11px;
+      pointer-events: none;
+      text-shadow: 0 0 4px #33ff33;
+    }
+    .hud-item { margin-bottom: 4px; }
+    .quick-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .chip {
+      background: #0a1f0a;
+      border: 1px solid #225522;
+      color: #88ff88;
+      padding: 3px 8px;
+      font-size: 11px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .chip:hover { background: #225522; color: #fff; }
+    #key-modal[hidden] { display: none; }
+    #key-modal {
+      position: fixed; inset: 0; z-index: 10;
+      background: rgba(0, 0, 0, 0.75);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .key-box {
+      background: #050d05; border: 2px solid var(--crt-green); border-radius: 6px;
+      padding: 18px; width: min(420px, 90vw); font-size: 13px;
+      box-shadow: 0 0 24px rgba(51, 255, 51, 0.35);
+    }
+    .key-box p { margin: 8px 0; color: #88ff88; font-size: 11px; }
+    #key-input {
+      width: 100%; background: #000; color: var(--crt-green); border: 1px solid #225522;
+      padding: 8px; font-family: inherit; font-size: 14px; outline: none;
+    }
+    #key-input:focus { border-color: var(--crt-green); }
+    .key-actions { display: flex; gap: 8px; margin-top: 12px; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div>&#9889; JURASSIC PARK MUD 3D :: ISLA NUBLAR SURVIVAL</div>
+    <div>
+      <span class="badge" id="player-hp-badge">HP 100/100</span>
+      <span class="badge" id="ammo-badge">SHELLS 3 | FLARES 2</span>
+      <span class="badge badge-btn offline" id="api-badge" role="button" tabindex="0" title="Click to set Gemini API key">GEMINI WORLD ENGINE: <span id="api-status">[OFFLINE SIMULATION]</span></span>
+      <span class="badge">THREE.JS 60FPS</span>
+    </div>
+  </header>
+
+  <div class="main-view">
+    <div class="terminal-panel">
+      <div class="terminal-output" id="log" aria-live="polite"></div>
+
+      <div class="quick-actions" id="quick-actions">
+        <button class="chip" data-cmd="look">look</button>
+        <button class="chip" data-cmd="shoot">shoot</button>
+        <button class="chip" data-cmd="shock">shock</button>
+        <button class="chip" data-cmd="flare">flare</button>
+        <button class="chip" data-cmd="north">north</button>
+        <button class="chip" data-cmd="east">east</button>
+        <button class="chip" data-cmd="take card">take card</button>
+        <button class="chip" data-cmd="restore power">restore power</button>
+      </div>
+
+      <div class="terminal-input-row">
+        <span class="prompt-label">&gt;</span>
+        <input type="text" id="mud-input" autocomplete="off" aria-label="Command input" placeholder="Enter action (look, shoot, shock, flare, north, east, take card)..." autofocus>
+      </div>
+    </div>
+
+    <div class="three-panel">
+      <div id="three-container" style="width: 100%; height: 100%;"></div>
+      <div id="hurt-vignette" aria-hidden="true"></div>
+      <div class="hud-overlay">
+        <div class="hud-item"><strong>3D SCENE STATE</strong></div>
+        <div class="hud-item">FPS: <span id="hud-fps">60</span></div>
+        <div class="hud-item">Room: <span id="hud-room">lobby</span></div>
+        <div class="hud-item">Raptor Pack HP: <span id="hud-raptor">45/45</span></div>
+        <div class="hud-item">Animation: <span id="hud-anim">IDLE</span></div>
+        <div class="hud-item">Light Color: <span id="hud-light">#ff6a00</span></div>
+        <div class="hud-item">Fog Density: <span id="hud-fog">0.04</span></div>
+        <div class="hud-item">Perceived Latency: <span style="color:#00ffff;">0.00s (Teletype Masked)</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="key-modal" role="dialog" aria-modal="true" aria-labelledby="key-title" hidden>
+    <div class="key-box">
+      <div id="key-title"><strong>GEMINI API KEY</strong></div>
+      <p>Input is masked. Stored only in this browser (localStorage).</p>
+      <input type="password" id="key-input" autocomplete="new-password" spellcheck="false" aria-label="Gemini API key">
+      <div class="key-actions">
+        <button class="chip" id="key-save" type="button">save</button>
+        <button class="chip" id="key-clear" type="button">clear (go offline)</button>
+        <button class="chip" id="key-cancel" type="button">cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // =============================================================
+    // 0. Pure helpers
+    // =============================================================
+    function randInt(lo, hi) { return lo + Math.floor(Math.random() * (hi - lo + 1)); }
+    let rng = randInt; // swappable for deterministic tests
+
+    // =============================================================
+    // 1. Procedural Web Audio Engine (lazy, never throws)
+    // =============================================================
+    let audioCtx = null;
+    let noiseBuf = null;
+
+    function getAudio() {
+      if (audioCtx) {
+        if (audioCtx.state === 'suspended' && audioCtx.resume) { try { audioCtx.resume().catch(() => {}); } catch (e) { /* ignore */ } }
+        return audioCtx;
+      }
+      try {
+        // Browsers block audio until a user gesture; stay silent until then
+        if (typeof navigator !== 'undefined' && navigator.userActivation && !navigator.userActivation.hasBeenActive) return null;
+        const AC = window.AudioContext || window.webkitAudioContext;
+        if (!AC) return null;
+        audioCtx = new AC();
+      } catch (e) { audioCtx = null; }
+      return audioCtx;
+    }
+
+    function getNoise(ctx) {
+      if (noiseBuf) return noiseBuf;
+      const len = Math.floor(ctx.sampleRate * 1.6);
+      noiseBuf = ctx.createBuffer(1, len, ctx.sampleRate);
+      const d = noiseBuf.getChannelData(0);
+      for (let i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
+      return noiseBuf;
+    }
+
+    function safeAudio(fn) {
+      return function () {
+        try {
+          const ctx = getAudio();
+          if (ctx) fn(ctx, ctx.currentTime);
+        } catch (e) { /* audio must never crash the game */ }
+      };
+    }
+
+    function noiseSource(ctx) {
+      const src = ctx.createBufferSource();
+      src.buffer = getNoise(ctx);
+      return src;
+    }
+
+    const AudioEngine = {
+      playKeyClick: safeAudio((ctx, t) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(280 + Math.random() * 200, t);
+        gain.gain.setValueAtTime(0.04, t);
+        gain.gain.exponentialRampToValueAtTime(0.001, t + 0.035);
+        osc.connect(gain); gain.connect(ctx.destination);
+        osc.start(t); osc.stop(t + 0.04);
+      }),
+      playGunshot: safeAudio((ctx, t) => {
+        const n = noiseSource(ctx);
+        const lp = ctx.createBiquadFilter();
+        const g = ctx.createGain();
+        lp.type = 'lowpass';
+        lp.frequency.setValueAtTime(3000, t);
+        lp.frequency.exponentialRampToValueAtTime(250, t + 0.35);
+        g.gain.setValueAtTime(0.6, t);
+        g.gain.exponentialRampToValueAtTime(0.001, t + 0.4);
+        n.connect(lp); lp.connect(g); g.connect(ctx.destination);
+        n.start(t); n.stop(t + 0.45);
+        const o = ctx.createOscillator();
+        const og = ctx.createGain();
+        o.type = 'sine';
+        o.frequency.setValueAtTime(130, t);
+        o.frequency.exponentialRampToValueAtTime(38, t + 0.25);
+        og.gain.setValueAtTime(0.5, t);
+        og.gain.exponentialRampToValueAtTime(0.001, t + 0.3);
+        o.connect(og); og.connect(ctx.destination);
+        o.start(t); o.stop(t + 0.32);
+      }),
+      playTaser: safeAudio((ctx, t) => {
+        const o = ctx.createOscillator();
+        const g = ctx.createGain();
+        o.type = 'square';
+        for (let i = 0; i < 15; i++) o.frequency.setValueAtTime(70 + Math.random() * 380, t + i * 0.03);
+        g.gain.setValueAtTime(0.09, t);
+        g.gain.exponentialRampToValueAtTime(0.001, t + 0.46);
+        o.connect(g); g.connect(ctx.destination);
+        o.start(t); o.stop(t + 0.47);
+        const n = noiseSource(ctx);
+        const hp = ctx.createBiquadFilter();
+        const ng = ctx.createGain();
+        hp.type = 'highpass'; hp.frequency.value = 3500;
+        ng.gain.setValueAtTime(0.12, t);
+        ng.gain.exponentialRampToValueAtTime(0.001, t + 0.45);
+        n.connect(hp); hp.connect(ng); ng.connect(ctx.destination);
+        n.start(t); n.stop(t + 0.47);
+      }),
+      playFlare: safeAudio((ctx, t) => {
+        const n = noiseSource(ctx);
+        const bp = ctx.createBiquadFilter();
+        const g = ctx.createGain();
+        bp.type = 'bandpass'; bp.frequency.value = 4200; bp.Q.value = 0.7;
+        g.gain.setValueAtTime(0.001, t);
+        g.gain.exponentialRampToValueAtTime(0.18, t + 0.1);
+        g.gain.exponentialRampToValueAtTime(0.001, t + 1.4);
+        n.connect(bp); bp.connect(g); g.connect(ctx.destination);
+        n.start(t); n.stop(t + 1.5);
+      }),
+      playShriek: safeAudio((ctx, t) => {
+        const o = ctx.createOscillator();
+        const lfo = ctx.createOscillator();
+        const lfoGain = ctx.createGain();
+        const g = ctx.createGain();
+        o.type = 'sawtooth';
+        o.frequency.setValueAtTime(700, t);
+        o.frequency.exponentialRampToValueAtTime(2400, t + 0.25);
+        o.frequency.exponentialRampToValueAtTime(900, t + 0.75);
+        lfo.frequency.value = 30; lfoGain.gain.value = 140;
+        lfo.connect(lfoGain); lfoGain.connect(o.frequency);
+        g.gain.setValueAtTime(0.001, t);
+        g.gain.exponentialRampToValueAtTime(0.12, t + 0.05);
+        g.gain.exponentialRampToValueAtTime(0.001, t + 0.8);
+        o.connect(g); g.connect(ctx.destination);
+        o.start(t); lfo.start(t); o.stop(t + 0.82); lfo.stop(t + 0.82);
+      }),
+      playThud: safeAudio((ctx, t) => {
+        const o = ctx.createOscillator();
+        const g = ctx.createGain();
+        o.type = 'sine';
+        o.frequency.setValueAtTime(90, t);
+        o.frequency.exponentialRampToValueAtTime(35, t + 0.15);
+        g.gain.setValueAtTime(0.18, t);
+        g.gain.exponentialRampToValueAtTime(0.001, t + 0.18);
+        o.connect(g); g.connect(ctx.destination);
+        o.start(t); o.stop(t + 0.2);
+      }),
+      playChime: safeAudio((ctx, t) => {
+        [880, 1320].forEach((f) => {
+          const o = ctx.createOscillator();
+          const g = ctx.createGain();
+          o.type = 'sine'; o.frequency.value = f;
+          g.gain.setValueAtTime(0.08, t);
+          g.gain.exponentialRampToValueAtTime(0.001, t + 0.6);
+          o.connect(g); g.connect(ctx.destination);
+          o.start(t); o.stop(t + 0.62);
+        });
+      })
+    };
+    window.AudioEngine = AudioEngine;
+    const playKeyClick = AudioEngine.playKeyClick;
+
+    // =============================================================
+    // 2. Terminal Teletype Streamer (ordered print queue)
+    // =============================================================
+    const logEl = document.getElementById('log');
+    const inputEl = document.getElementById('mud-input');
+    const printQueue = [];
+    const transcript = [];
+    let printing = false;
+    let printGen = 0;
+    let stepTimer = null; // handle of the active typing timeout
+
+    function say(text, cls, instant) {
+      transcript.push(text);
+      if (transcript.length > 300) transcript.shift();
+      printQueue.push({ text: String(text), cls: cls || '', instant: !!instant, gen: printGen });
+      if (!printing) pumpPrint();
+    }
+
+    function pumpPrint() {
+      const item = printQueue.shift();
+      if (!item) { printing = false; return; }
+      if (item.gen !== printGen) return; // stale: the active pump owns the queue
+      printing = true;
+      const div = document.createElement('div');
+      div.style.marginTop = '8px';
+      if (item.cls) div.className = item.cls;
+      // Cap DOM size so long sessions stay fast
+      while (logEl.children.length > 200) logEl.removeChild(logEl.firstChild);
+      logEl.appendChild(div);
+      let i = 0;
+      const step = () => {
+        stepTimer = null;
+        if (item.gen !== printGen) return;
+        if (item.instant) i = item.text.length; else i = Math.min(item.text.length, i + 2);
+        div.textContent = item.text.slice(0, i);
+        if (!item.instant && i % 6 === 0) playKeyClick();
+        logEl.scrollTop = logEl.scrollHeight;
+        if (i < item.text.length) stepTimer = setTimeout(step, 12); else pumpPrint();
+      };
+      step();
+    }
+
+    function clearTerminal() {
+      if (stepTimer) { clearTimeout(stepTimer); stepTimer = null; }
+      printGen++;
+      printQueue.length = 0;
+      printing = false;
+      logEl.textContent = '';
+    }
+
+    // =============================================================
+    // 3. Three.js Scene: Jurassic Dioramas
+    // =============================================================
+    const container = document.getElementById('three-container');
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x120604);
+    scene.fog = new THREE.FogExp2(0x120604, 0.04);
+
+    const camera = new THREE.PerspectiveCamera(50, Math.max(1, container.clientWidth) / Math.max(1, container.clientHeight), 0.1, 100);
+    camera.position.set(0, 3.8, 9);
+    camera.lookAt(0, 1.2, 0);
+    const camBase = camera.position.clone();
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    container.appendChild(renderer.domElement);
+
+    const floorMat = new THREE.MeshStandardMaterial({ color: 0x2a2018, roughness: 0.9, metalness: 0.1 });
+    const floor = new THREE.Mesh(new THREE.PlaneGeometry(20, 20), floorMat);
+    floor.rotation.x = -Math.PI / 2;
+    floor.receiveShadow = true;
+    scene.add(floor);
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+    // ---- Lobby diorama: T-Rex ribcage + 3 raptors ----
+    const lobbyGroup = new THREE.Group();
+    const boneMat = new THREE.MeshStandardMaterial({ color: 0xd8cfae, roughness: 0.6 });
+    const darkBoneMat = new THREE.MeshStandardMaterial({ color: 0x120e08, roughness: 1 });
+    const ribcage = new THREE.Group();
+    // Upright skeletal arch: 7 vertical rib arcs, peak height 2.0m - 2.5m (r 1.5 -> 2.3 + tube)
+    for (let i = 0; i < 7; i++) {
+      const r = 1.5 + Math.sin((i / 6) * Math.PI) * 0.8;
+      const rib = new THREE.Mesh(new THREE.TorusGeometry(r, 0.09, 8, 24, Math.PI), boneMat);
+      rib.scale.x = 0.8; // slimmer arch width, height stays 2.0m+
+      rib.position.set(0, 0, -i * 0.6);
+      ribcage.add(rib);
+    }
+    const spine = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 4.2, 8), boneMat);
+    spine.rotation.x = Math.PI / 2;
+    spine.position.set(0, 0.12, -1.8);
+    ribcage.add(spine);
+    ribcage.position.set(0, 0, -1.8); // front rib at z = -1.8
+    lobbyGroup.add(ribcage);
+
+    // Enlarged T-Rex skull + open jaw: imposing backdrop behind the raptor pack, facing the camera
+    const skullGroup = new THREE.Group();
+    const cranium = new THREE.Mesh(new THREE.BoxGeometry(1.5, 1.2, 1.8), boneMat);
+    cranium.position.set(0, 0.2, -0.3);
+    const snout = new THREE.Mesh(new THREE.BoxGeometry(1.1, 0.75, 1.7), boneMat);
+    snout.position.set(0, 0.05, 1.3);
+    const jaw = new THREE.Mesh(new THREE.BoxGeometry(1.0, 0.28, 2.4), boneMat);
+    jaw.position.set(0, -0.75, 1.0);
+    jaw.rotation.x = 0.18; // jaw hangs open
+    skullGroup.add(cranium, snout, jaw);
+    [-0.55, 0.55].forEach((x) => {
+      const socket = new THREE.Mesh(new THREE.SphereGeometry(0.28, 10, 10), darkBoneMat);
+      socket.position.set(x * 1.0, 0.5, 0.6);
+      skullGroup.add(socket);
+    });
+    const toothGeo = new THREE.ConeGeometry(0.07, 0.34, 6);
+    for (let i = 0; i < 5; i++) {
+      [-0.5, 0.5].forEach((x) => {
+        const up = new THREE.Mesh(toothGeo, boneMat);
+        up.rotation.x = Math.PI; // tips point down
+        up.position.set(x, -0.45, 0.7 + i * 0.32);
+        const low = new THREE.Mesh(toothGeo, boneMat);
+        low.position.set(x * 0.85, -0.45, 0.8 + i * 0.4);
+        skullGroup.add(up, low);
+      });
+    }
+    skullGroup.scale.set(1.35, 1.35, 1.35);
+    skullGroup.position.set(0, 1.5, -6.2);
+    lobbyGroup.add(skullGroup);
+    [ribcage, skullGroup].forEach((g) => g.traverse((o) => { if (o.isMesh) o.castShadow = true; }));
+
+    function makeRaptor() {
+      const g = new THREE.Group();
+      const skin = new THREE.MeshStandardMaterial({ color: 0x3a5a2a, roughness: 0.7 });
+      const body = new THREE.Mesh(new THREE.SphereGeometry(0.45, 10, 8), skin);
+      body.scale.set(0.8, 0.8, 1.5);
+      body.position.set(0, 0.75, 0);
+      g.add(body);
+      const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.18, 0.6, 6), skin);
+      neck.position.set(0, 1.1, 0.55);
+      neck.rotation.x = 0.6;
+      g.add(neck);
+      const head = new THREE.Group();
+      head.position.set(0, 1.4, 0.85);
+      head.add(new THREE.Mesh(new THREE.BoxGeometry(0.25, 0.22, 0.5), skin));
+      const eyeMat = new THREE.MeshBasicMaterial({ color: 0xffee00 });
+      [-0.12, 0.12].forEach((x) => {
+        const eye = new THREE.Mesh(new THREE.SphereGeometry(0.05, 8, 8), eyeMat);
+        eye.position.set(x, 0.06, 0.15);
+        head.add(eye);
+      });
+      g.add(head);
+      const tail = new THREE.Mesh(new THREE.ConeGeometry(0.18, 1.3, 6), skin);
+      tail.rotation.x = -Math.PI / 2;
+      tail.position.set(0, 0.75, -1.0);
+      g.add(tail);
+      [-0.25, 0.25].forEach((x) => {
+        const leg = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.1, 0.7, 6), skin);
+        leg.position.set(x, 0.35, 0.1);
+        g.add(leg);
+      });
+      return { group: g, head, tail, eyeMat };
+    }
+
+    const raptors = [[-2.6, 0.5], [0, -0.6], [2.6, 0.5]].map(([x, z], idx) => {
+      const r = makeRaptor();
+      r.baseX = x; r.baseZ = z; r.phase = idx * 2.1; r.deadT = 0; r.puddle = null;
+      r.group.position.set(x, 0, z);
+      lobbyGroup.add(r.group);
+      r.group.traverse((o) => { if (o.isMesh) o.castShadow = true; });
+      return r;
+    });
+    scene.add(lobbyGroup);
+
+    // ---- Genetics lab diorama: 3 cryo vats with embryos ----
+    const labGroup = new THREE.Group();
+    const vatMat = new THREE.MeshStandardMaterial({ color: 0x00ff88, transparent: true, opacity: 0.35, roughness: 0.1 });
+    const capMat = new THREE.MeshStandardMaterial({ color: 0x1a1f1c, roughness: 0.5, metalness: 0.6 });
+    const embryoMat = new THREE.MeshStandardMaterial({ color: 0xffaa00, emissive: 0xaa5500 });
+    const embryos = [];
+    [-3, 0, 3].forEach((x, i) => {
+      const vat = new THREE.Mesh(new THREE.CylinderGeometry(0.7, 0.7, 2.6, 16), vatMat);
+      vat.position.set(x, 1.5, -2);
+      labGroup.add(vat);
+      [0.15, 2.85].forEach((y) => {
+        const cap = new THREE.Mesh(new THREE.CylinderGeometry(0.8, 0.8, 0.3, 16), capMat);
+        cap.position.set(x, y, -2);
+        labGroup.add(cap);
+      });
+      const embryo = new THREE.Mesh(new THREE.SphereGeometry(0.28, 12, 12), embryoMat);
+      embryo.position.set(x, 1.5, -2);
+      embryo.userData.phase = i * 1.7;
+      embryos.push(embryo);
+      labGroup.add(embryo);
+    });
+    const labTable = new THREE.Mesh(new THREE.BoxGeometry(3, 0.8, 0.9), capMat);
+    labTable.position.set(0, 0.4, 1);
+    labGroup.add(labTable);
+    labGroup.visible = false;
+    scene.add(labGroup);
+
+    // ---- Control room diorama: UNIX mainframe + CRT monitors ----
+    const controlGroup = new THREE.Group();
+    const cabinet = new THREE.Mesh(new THREE.BoxGeometry(4.5, 3.4, 1.2), new THREE.MeshStandardMaterial({ color: 0x1b2230, roughness: 0.5, metalness: 0.5 }));
+    cabinet.position.set(0, 1.7, -3);
+    controlGroup.add(cabinet);
+    const crts = [];
+    for (let i = 0; i < 6; i++) {
+      const mat = new THREE.MeshBasicMaterial({ color: 0x2288ff });
+      const crt = new THREE.Mesh(new THREE.PlaneGeometry(1.1, 0.8), mat);
+      crt.position.set(-1.5 + (i % 3) * 1.5, 2.3 - Math.floor(i / 3) * 1.1, -2.38);
+      crt.userData.phase = i * 0.9;
+      crts.push(crt);
+      controlGroup.add(crt);
+    }
+    const desk = new THREE.Mesh(new THREE.BoxGeometry(2.4, 0.9, 1.0), capMat);
+    desk.position.set(0, 0.45, -0.6);
+    controlGroup.add(desk);
+    controlGroup.visible = false;
+    scene.add(controlGroup);
+
+    // Player is first-person: no third-person body mesh (see shotgun rig below).
+
+    // ---- Lights ----
+    const pointLight = new THREE.PointLight(0xff6a00, 2.2, 22);
+    pointLight.position.set(0, 4, 2);
+    scene.add(pointLight);
+    const sirenLight = new THREE.PointLight(0xff3300, 0, 18);
+    sirenLight.position.set(0, 3.5, 0);
+    scene.add(sirenLight);
+    const flashLight = new THREE.PointLight(0xffffff, 0, 25);
+    flashLight.position.set(0, 2, 5);
+    scene.add(flashLight);
+    scene.add(new THREE.AmbientLight(0x222233, 0.7));
+    // Amber fossil spotlight: rakes through the rib arch so it throws long shadows across the lobby floor
+    const fossilSpot = new THREE.SpotLight(0xffa040, 2.2, 35, 0.9, 0.5, 1);
+    fossilSpot.position.set(5, 8, -7.5);
+    fossilSpot.target.position.set(0, 0, -1);
+    fossilSpot.castShadow = true;
+    fossilSpot.shadow.mapSize.set(1024, 1024);
+    fossilSpot.shadow.camera.near = 2;
+    fossilSpot.shadow.camera.far = 35;
+    fossilSpot.shadow.bias = -0.0005;
+    scene.add(fossilSpot);
+    scene.add(fossilSpot.target);
+    // High-voltage taser strobe, centred on the raptor pack
+    const arcLight = new THREE.PointLight(0x00ffff, 0, 20);
+    arcLight.position.set(0, 1.6, 0);
+    scene.add(arcLight);
+
+    // ---- First-person Doom-style shotgun rig (attached to the camera) ----
+    const shotgunGroup = new THREE.Group();
+    const gunMetal = new THREE.MeshStandardMaterial({ color: 0x1a1a1a, metalness: 0.9, roughness: 0.35 });
+    const barrelGeo = new THREE.CylinderGeometry(0.045, 0.045, 0.8, 12);
+    [-0.05, 0.05].forEach((x) => {
+      const barrel = new THREE.Mesh(barrelGeo, gunMetal);
+      barrel.rotation.x = Math.PI / 2; // lay the cylinder along -Z
+      barrel.position.set(x, 0, 0);
+      shotgunGroup.add(barrel);
+    });
+    const muzzleFlash = new THREE.Mesh(
+      new THREE.DodecahedronGeometry(0.18),
+      new THREE.MeshStandardMaterial({ color: 0xffdd33, emissive: 0xffaa00, emissiveIntensity: 2 })
+    );
+    muzzleFlash.position.set(0, 0, -0.5); // just past the barrel tips
+    muzzleFlash.visible = false;
+    shotgunGroup.add(muzzleFlash);
+    shotgunGroup.position.set(0.25, -0.35, -0.7);
+    camera.add(shotgunGroup);
+    scene.add(camera); // camera must be in the graph for its children to render
+
+    window.addEventListener('resize', () => {
+      camera.aspect = Math.max(1, container.clientWidth) / Math.max(1, container.clientHeight);
+      camera.updateProjectionMatrix();
+      renderer.setSize(container.clientWidth, container.clientHeight);
+    });
+
+    // =============================================================
+    // 4. Scene state: animation FSM, theme, shake, flash
+    // =============================================================
+    const THEMES = {
+      lobby:   { light: '#ff6a00', bg: 0x120604, floor: 0x2a2018, fog: 0.04 },
+      lab:     { light: '#00ff88', bg: 0x03120a, floor: 0x16241c, fog: 0.05 },
+      control: { light: '#2288ff', bg: 0x040a14, floor: 0x141a26, fog: 0.035 }
+    };
+    let currentAnim = 'IDLE';
+    let targetLightColor = new THREE.Color(0xff6a00);
+    let targetFogDensity = 0.04;
+    let targetLightIntensity = 2.2;
+    let cameraShakeIntensity = 0;
+    let flashIntensity = 0;
+    let animTimer = null;
+    let themeTimer = null;
+    const raptorFx = { mode: 'stalk', timer: 0 };
+    const LEAD_RAPTOR = 1;       // centre raptor leads the attack
+    const LUNGE_SECONDS = 0.24;  // 120ms out + 120ms spring back
+    const LUNGE_MAX_Z = 5.5;
+    let gunKick = 0;
+    let muzzleTimer = 0;
+    let muzzleSpike = false;
+    let strobeTimer = 0;
+
+    function triggerGunRecoil() {
+      gunKick = 1;
+      muzzleTimer = 0.06;
+      muzzleFlash.visible = true;
+      muzzleSpike = true;
+    }
+    function triggerTaserStrobe() { strobeTimer = 0.18; }
+    function flashHurtVignette() {
+      const v = document.getElementById('hurt-vignette');
+      if (!v) return;
+      v.classList.remove('hurt');
+      void v.offsetWidth; // restart the CSS animation
+      v.classList.add('hurt');
+    }
+
+    function triggerCameraShake(amount) { cameraShakeIntensity = Math.max(cameraShakeIntensity, amount); }
+    function triggerFlash(hex, intensity) {
+      flashLight.color.set(hex);
+      flashIntensity = Math.max(flashIntensity, intensity);
+    }
+
+    function update3DScene(params) {
+      if (!params) return;
+      if (params.animation) {
+        currentAnim = params.animation;
+        document.getElementById('hud-anim').textContent = currentAnim;
+      }
+      if (params.lightColor) {
+        targetLightColor = new THREE.Color(params.lightColor);
+        document.getElementById('hud-light').textContent = params.lightColor;
+      }
+      if (typeof params.lightIntensity === 'number') targetLightIntensity = params.lightIntensity;
+      if (typeof params.fogDensity === 'number') {
+        targetFogDensity = params.fogDensity;
+        document.getElementById('hud-fog').textContent = params.fogDensity;
+      }
+      if (params.cameraShake) triggerCameraShake(0.3);
+    }
+
+    function setAnim(anim, returnMs) {
+      update3DScene({ animation: anim });
+      if (animTimer) clearTimeout(animTimer);
+      if (returnMs && anim !== 'IDLE') animTimer = setTimeout(() => update3DScene({ animation: 'IDLE' }), returnMs);
+    }
+
+    function applyRoomTheme(roomId) {
+      const th = THEMES[roomId] || THEMES.lobby;
+      scene.background.setHex(th.bg);
+      scene.fog.color.setHex(th.bg);
+      floorMat.color.setHex(th.floor);
+      lobbyGroup.visible = roomId === 'lobby';
+      labGroup.visible = roomId === 'lab';
+      controlGroup.visible = roomId === 'control';
+      update3DScene({ lightColor: th.light, fogDensity: th.fog, lightIntensity: 2.2 });
+    }
+
+    function restoreThemeLater(ms) {
+      if (themeTimer) clearTimeout(themeTimer);
+      themeTimer = setTimeout(() => {
+        const th = THEMES[state.room] || THEMES.lobby;
+        update3DScene({ lightColor: th.light, fogDensity: th.fog, lightIntensity: 2.2 });
+      }, ms);
+    }
+
+    let fpsSmooth = 60;
+    let hudFrame = 0;
+    const clock = new THREE.Clock();
+    function animate() {
+      requestAnimationFrame(animate);
+      const delta = Math.min(clock.getDelta(), 0.1);
+      const t = clock.getElapsedTime();
+      if (delta > 0) fpsSmooth += (1 / delta - fpsSmooth) * 0.1;
+      if (++hudFrame % 15 === 0) document.getElementById('hud-fps').textContent = Math.round(fpsSmooth);
+
+      // Raptors
+      if (lobbyGroup.visible) {
+        if (raptorFx.timer > 0) {
+          raptorFx.timer -= delta;
+          if (raptorFx.timer <= 0 && raptorFx.mode !== 'dead') raptorFx.mode = 'stalk';
+        }
+        raptors.forEach((r, idx) => {
+          if (raptorFx.mode === 'dead') {
+            // Persistent corpse: collapse onto side, then stay put
+            r.deadT = Math.min(1, r.deadT + delta * 3);
+            const k = r.deadT * r.deadT * (3 - 2 * r.deadT);
+            r.group.rotation.z = (Math.PI / 2) * k;
+            r.group.position.set(r.baseX, 0.15 * k, r.baseZ);
+            r.eyeMat.color.setHex(0x332200);
+            if (r.puddle) {
+              const s = Math.max(0.01, k);
+              r.puddle.scale.set(s, s, 1);
+            }
+            return;
+          }
+          let offZ = 0;
+          let headYaw = Math.sin(t * 1.3 + r.phase) * 0.4;
+          let eye = 0xffee00;
+          if (raptorFx.mode === 'flinch') offZ = -0.5 * Math.max(0, raptorFx.timer / 0.3);
+          else if (raptorFx.mode === 'lunge' && idx === LEAD_RAPTOR) {
+            // Lead raptor springs at the camera (z up to 5.5) and snaps back
+            const p = 1 - Math.max(0, raptorFx.timer) / LUNGE_SECONDS;
+            offZ = (LUNGE_MAX_Z - r.baseZ) * Math.sin(Math.PI * Math.min(1, p));
+          } else if (raptorFx.mode === 'blind') { headYaw = Math.sin(t * 25 + r.phase) * 0.8; eye = 0x665500; }
+          r.group.position.set(r.baseX, Math.abs(Math.sin(t * 3 + r.phase)) * 0.04, r.baseZ + offZ);
+          r.head.rotation.y = headYaw;
+          r.tail.position.x = Math.sin(t * 2 + r.phase) * 0.15;
+          r.eyeMat.color.setHex(eye);
+        });
+      }
+
+      // First-person shotgun: idle breathing bob, recoil kick, muzzle flash
+      gunKick = Math.max(0, gunKick - delta * 10); // back to baseline in ~6 frames
+      shotgunGroup.position.set(0.25, -0.35 + Math.sin(t * 1.8) * 0.008, -0.7 + 0.18 * gunKick);
+      shotgunGroup.rotation.set(0.25 * gunKick, 0, 0);
+      if (muzzleTimer > 0) {
+        muzzleTimer -= delta;
+        muzzleFlash.visible = muzzleTimer > 0;
+        const s = 0.8 + Math.random() * 0.6;
+        muzzleFlash.scale.set(s, s, s);
+        muzzleFlash.rotation.set(Math.random() * 3, Math.random() * 3, 0);
+      } else {
+        muzzleFlash.visible = false;
+      }
+      embryos.forEach((e) => { e.position.y = 1.5 + Math.sin(t * 1.5 + e.userData.phase) * 0.25; });
+      crts.forEach((c) => {
+        const v = 0.55 + 0.45 * Math.abs(Math.sin(t * 3 + c.userData.phase) * Math.sin(t * 7.3 + c.userData.phase));
+        c.material.color.setRGB(0.13 * v, 0.53 * v, 1.0 * v);
+      });
+
+      // Lights
+      pointLight.color.lerp(targetLightColor, 0.05);
+      pointLight.intensity = targetLightIntensity + Math.sin(t * 15) * 0.3;
+      scene.fog.density += (targetFogDensity - scene.fog.density) * 0.05;
+      fossilSpot.intensity = state.room === 'lobby' ? 2.2 : 0; // intensity (not visibility) avoids shader recompiles
+      if (state.room === 'lobby') {
+        sirenLight.position.set(Math.cos(t * 3) * 5, 3.5, Math.sin(t * 3) * 3);
+        sirenLight.intensity = Math.max(0, 1.8 + Math.sin(t * 6) * 1.2);
+      } else {
+        sirenLight.intensity = 0;
+      }
+      flashLight.intensity = flashIntensity;
+      flashIntensity *= Math.exp(-delta * 9);
+      if (flashIntensity < 0.01) flashIntensity = 0;
+      if (muzzleSpike) { pointLight.intensity = 4.5; muzzleSpike = false; } // one-frame spike
+      if (strobeTimer > 0) {
+        strobeTimer -= delta;
+        arcLight.intensity = strobeTimer > 0 && Math.floor(strobeTimer / 0.02) % 2 === 0 ? 3.5 : 0;
+      } else {
+        arcLight.intensity = 0;
+      }
+
+      // Decaying camera shake
+      camera.position.copy(camBase);
+      if (cameraShakeIntensity > 0.001) {
+        camera.position.x += (Math.random() - 0.5) * cameraShakeIntensity;
+        camera.position.y += (Math.random() - 0.5) * cameraShakeIntensity;
+        cameraShakeIntensity *= 0.9;
+      } else {
+        cameraShakeIntensity = 0;
+      }
+
+      renderer.render(scene, camera);
+    }
+
+    // =============================================================
+    // 5. Game state, rooms, skills
+    // =============================================================
+    const ROOMS = {
+      lobby: {
+        name: 'VISITOR CENTER LOBBY',
+        desc: 'Emergency sirens strobe amber across a shattered fossil display. A towering T-Rex skeleton arches over the marble floor, its skull glaring down from the far wall. The park-wide power grid is dead and the fences are down.',
+        exits: { north: 'control', east: 'lab' }
+      },
+      lab: {
+        name: 'GENETICS LABORATORY',
+        desc: 'Cryo vats hum with toxic green light. Amber embryos drift in the fluid. Frost clings to the steel tables.',
+        exits: { west: 'lobby' }
+      },
+      control: {
+        name: 'MAIN CONTROL ROOM',
+        desc: 'A wall of CRT monitors glows cold blue. The UNIX mainframe terminal waits for authorization to restore the power grid.',
+        exits: { south: 'lobby' }
+      }
+    };
+
+    function freshState() {
+      return { room: 'lobby', hp: 100, shells: 3, flares: 2, hasCard: false, raptorHp: 45, raptorsAlive: true, over: false, won: false, shotsFired: 0, shocksUsed: 0 };
+    }
+    let state = freshState();
+    let epoch = 0;
+
+    function updateBadges() {
+      const hpEl = document.getElementById('player-hp-badge');
+      hpEl.textContent = 'HP ' + state.hp + '/100';
+      hpEl.classList.toggle('low', state.hp <= 30);
+      document.getElementById('ammo-badge').textContent =
+        'SHELLS ' + state.shells + ' | FLARES ' + state.flares + (state.hasCard ? ' | CARD' : '');
+      document.getElementById('hud-room').textContent = state.room;
+      document.getElementById('hud-raptor').textContent = (state.raptorsAlive ? state.raptorHp : 0) + '/45';
+    }
+
+    // Authoritative gameplay facts (threat, items, exits) always come from code, never from the AI.
+    function roomFacts() {
+      const r = ROOMS[state.room];
+      let text = '';
+      if (state.room === 'lobby') {
+        text += state.raptorsAlive
+          ? '\nTHREAT: 3 juvenile Velociraptors circle in the shadows (pack HP ' + state.raptorHp + '/45). Yellow eyes track your every move.'
+          : '\nThree raptor corpses lie in pools of dark blood. The lobby is secured.';
+      }
+      if (state.room === 'lab' && !state.hasCard) text += '\nAn InGen Security Passcard lies beside an overturned tray.';
+      if (state.room === 'control') text += state.hasCard ? '\nYour InGen passcard fits the terminal reader. Try: restore power' : '\nThe terminal demands an InGen passcard.';
+      text += '\nExits: ' + Object.keys(r.exits).map((d) => d.toUpperCase() + ' to ' + ROOMS[r.exits[d]].name).join(', ');
+      return text;
+    }
+
+    function describeRoom() {
+      const r = ROOMS[state.room];
+      return '== ' + r.name + ' ==\n' + r.desc + roomFacts();
+    }
+
+    function takeDamage(amount) {
+      state.hp = Math.max(0, state.hp - amount);
+      triggerCameraShake(0.5);
+      triggerFlash('#ff0000', 2);
+      flashHurtVignette();
+      AudioEngine.playThud();
+      updateBadges();
+      if (state.hp <= 0) gameOver();
+    }
+
+    function gameOver() {
+      state.over = true;
+      setAnim('IDLE');
+      update3DScene({ lightColor: '#880011', fogDensity: 0.1, lightIntensity: 1.2 });
+      AudioEngine.playShriek();
+      say('*** GAME OVER ***\nThe raptors close in from every side. The terminal screen cuts to static.\nType RESTART to reboot the simulation.', 'danger');
+    }
+
+    const puddleGeo = new THREE.CircleGeometry(0.6, 24);
+    const puddleMat = new THREE.MeshStandardMaterial({ color: 0x550000, roughness: 0.3, metalness: 0.2 });
+
+    // Pack dies: raptors collapse as persistent corpses with blood puddles
+    function killRaptors() {
+      state.raptorsAlive = false;
+      state.raptorHp = 0;
+      raptorFx.mode = 'dead';
+      raptorFx.timer = 0;
+      raptors.forEach((r) => {
+        r.deadT = 0;
+        if (!r.puddle) {
+          const p = new THREE.Mesh(puddleGeo, puddleMat);
+          p.rotation.x = -Math.PI / 2;
+          p.position.set(r.baseX - 0.45, 0.02, r.baseZ); // under the collapsed body
+          p.scale.set(0.01, 0.01, 1);
+          lobbyGroup.add(p);
+          r.puddle = p;
+        }
+      });
+      AudioEngine.playShriek();
+      updateBadges();
+    }
+
+    function resetRaptors() {
+      raptorFx.mode = 'stalk';
+      raptorFx.timer = 0;
+      raptors.forEach((r) => {
+        r.deadT = 0;
+        if (r.puddle) { lobbyGroup.remove(r.puddle); r.puddle = null; }
+        r.group.visible = true;
+        r.group.rotation.set(0, 0, 0);
+        r.group.position.set(r.baseX, 0, r.baseZ);
+      });
+    }
+
+    // Skill table: damage ranges and effects per spec
+    function executeSkill(type) {
+      if (state.over || state.won) return { ok: false, reason: 'ended' };
+      if (state.room !== 'lobby' || !state.raptorsAlive) {
+        say('There is nothing to use that on here.', 'warn');
+        return { ok: false, reason: 'no-target' };
+      }
+      let dmg = 0;
+      let blind = false;
+      let line;
+      if (type === 'shoot') {
+        if (state.shells <= 0) { say('*click* The SPAS-12 is empty. Try shock or flare.', 'warn'); return { ok: false, reason: 'no-ammo' }; }
+        state.shells--;
+        state.shotsFired++;
+        dmg = rng(20, 35);
+        AudioEngine.playGunshot();
+        triggerGunRecoil();
+        triggerFlash('#ffee88', 6);
+        triggerCameraShake(0.6);
+        update3DScene({ lightColor: '#fff2aa', lightIntensity: 3.5 });
+        restoreThemeLater(400);
+        line = 'BOOM! The SPAS-12 roars. Buckshot tears into the pack for ' + dmg + ' damage.';
+      } else if (type === 'shock') {
+        state.shocksUsed++;
+        dmg = rng(14, 21);
+        AudioEngine.playTaser();
+        triggerTaserStrobe();
+        triggerFlash('#00ffff', 5);
+        triggerCameraShake(0.3);
+        update3DScene({ lightColor: '#00ffff', lightIntensity: 3 });
+        restoreThemeLater(400);
+        line = 'ZZZZAP! The cattle prod arcs cyan lightning through a raptor for ' + dmg + ' damage.';
+      } else if (type === 'flare') {
+        if (state.flares <= 0) { say('You are out of flares.', 'warn'); return { ok: false, reason: 'no-ammo' }; }
+        state.flares--;
+        blind = true;
+        AudioEngine.playFlare();
+        triggerFlash('#ff1133', 4);
+        update3DScene({ lightColor: '#ff1133', lightIntensity: 3.5, fogDensity: 0.06 });
+        restoreThemeLater(2500);
+        raptorFx.mode = 'blind';
+        raptorFx.timer = 1.2;
+        line = 'FSSSSH! A crimson flare blazes. The raptors shriek and claw at their eyes, blinded.';
+      } else {
+        return { ok: false, reason: 'unknown-skill' };
+      }
+      setAnim('CAST', 900);
+      say(line, 'sys');
+
+      if (dmg > 0) {
+        state.raptorHp = Math.max(0, state.raptorHp - dmg);
+        if (state.raptorHp > 0) { raptorFx.mode = 'flinch'; raptorFx.timer = 0.3; }
+      }
+      let counter = 0;
+      if (state.raptorHp <= 0) {
+        killRaptors();
+        say('The pack shrieks and collapses in pools of dark blood. The lobby is secured.', 'good');
+      } else if (blind) {
+        say('Blinded, the raptors cannot counter-attack this turn. Pack HP ' + state.raptorHp + '/45.', 'good');
+      } else {
+        counter = rng(8, 17);
+        raptorFx.mode = 'lunge';
+        raptorFx.timer = LUNGE_SECONDS;
+        say('The raptors lunge back and rake you for ' + counter + ' damage! Pack HP ' + state.raptorHp + '/45.', 'danger');
+        takeDamage(counter);
+      }
+      updateBadges();
+      return { ok: true, dmg, counter, blind };
+    }
+
+    function enterRoom(id) {
+      state.room = id;
+      applyRoomTheme(id);
+      setAnim('WALK', 1000);
+      updateBadges();
+      showRoom();
+    }
+
+    const DIRS = { n: 'north', s: 'south', e: 'east', w: 'west', north: 'north', south: 'south', east: 'east', west: 'west' };
+    function move(dir) {
+      const dest = ROOMS[state.room].exits[dir];
+      if (!dest) { say('You cannot go ' + dir + ' from here.', 'warn'); return; }
+      if (state.room === 'lobby' && state.raptorsAlive) {
+        const dmg = rng(8, 17);
+        raptorFx.mode = 'lunge';
+        raptorFx.timer = LUNGE_SECONDS;
+        say('You bolt for the exit and the pack snaps at your heels for ' + dmg + ' damage!', 'danger');
+        takeDamage(dmg);
+        if (state.over) return;
+      }
+      enterRoom(dest);
+    }
+
+    function takeCard() {
+      if (state.room !== 'lab') { say('There is no passcard here.', 'warn'); return; }
+      if (state.hasCard) { say('You already carry the InGen Security Passcard.', 'warn'); return; }
+      state.hasCard = true;
+      setAnim('INTERACT', 1200);
+      AudioEngine.playChime();
+      updateBadges();
+      say('You pocket the InGen Security Passcard. Its magnetic strip is still warm.', 'good');
+    }
+
+    function restorePower() {
+      if (state.room !== 'control') { say('The terminal is in the Main Control Room.', 'warn'); return; }
+      if (!state.hasCard) {
+        say('$ sudo ./restore_power.sh\nACCESS DENIED: InGen security passcard required.', 'danger');
+        return;
+      }
+      state.won = true;
+      setAnim('INTERACT', 2500);
+      update3DScene({ lightColor: '#66ffcc', fogDensity: 0.02, lightIntensity: 3 });
+      triggerFlash('#66ffcc', 4);
+      AudioEngine.playChime();
+      say('$ login: ingen_admin\n$ sudo ./restore_power.sh --grid=all --fences=on\n[ OK ] mounting power grid\n[ OK ] security fences online\n[ OK ] containment re-armed\nIt is a UNIX system. You know this!', 'sys');
+      say('*** VICTORY ***\nPower is restored across Isla Nublar. A rescue helicopter thunders in over the visitor center. You survived.\nType RESTART to play again.', 'good');
+    }
+
+    function showInventory() {
+      say('INVENTORY:\n- SPAS-12 Shotgun (' + state.shells + ' Shells)\n- Road Flare (' + state.flares + ')\n- Cattle Prod Taser\n' + (state.hasCard ? '- InGen Security Passcard' : '- (no passcard yet)'));
+    }
+
+    function showHelp() {
+      say('COMMANDS: look | north/south/east/west | shoot | shock | flare | take card | restore power | inventory | restart\nGoal: survive the raptors, find the InGen passcard in the lab, restore power in the control room.', 'sys');
+    }
+
+    function bootIntro() {
+      say('============================================================\n* INGEN MAINFRAME :: ISLA NUBLAR SURVIVAL MUD v1.0 *\n============================================================\nPARK-WIDE POWER GRID FAILURE. SECURITY FENCES OFFLINE. CONTAINMENT BREACHED.', 'sys');
+      say(describeRoom());
+      say('Type help for commands, or click a quick action below.', 'sys');
+    }
+
+    function restartGame() {
+      epoch++;
+      clearTerminal();
+      state = freshState();
+      resetRaptors();
+      applyRoomTheme('lobby');
+      setAnim('IDLE');
+      updateBadges();
+      bootIntro();
+    }
+
+    // =============================================================
+    // 6. Command router
+    // =============================================================
+    function route(raw) {
+      const c = raw.trim().toLowerCase().replace(/\s+/g, ' ');
+      if (c === 'restart') { restartGame(); return; }
+      if (state.over) { say('SIMULATION TERMINATED. Type RESTART to reboot.', 'danger'); return; }
+      if (state.won) { say('Power is restored. Type RESTART to play again.', 'good'); return; }
+
+      const mv = c.match(/^(?:go |walk |move )?(north|south|east|west|n|s|e|w)$/);
+      if (mv) { move(DIRS[mv[1]]); return; }
+      if (/^(shoot|shotgun|fire shotgun)\b/.test(c)) { executeSkill('shoot'); return; }
+      if (/^(shock|taser|zap)\b/.test(c)) { executeSkill('shock'); return; }
+      if (/^(flare|use flare|fire flare|light flare)\b/.test(c)) { executeSkill('flare'); return; }
+      if (/^(look|l|look around|examine.*)$/.test(c)) { showRoom(); return; }
+      if (/^(take|get|grab|pick up) (the )?(ingen )?(security )?(pass ?card|card)$/.test(c)) { takeCard(); return; }
+      if (c.includes('restore power') || c === 'login' || /^use .*(card|terminal)/.test(c)) { restorePower(); return; }
+      if (/^(i|inv|inventory)$/.test(c)) { showInventory(); return; }
+      if (/^(help|\?)$/.test(c)) { showHelp(); return; }
+      askGemini(raw.trim());
+    }
+
+    function executeCmd(cmdText) {
+      if (typeof cmdText !== 'string' || !cmdText.trim()) return;
+      say('> ' + cmdText.trim(), 'echo', true);
+      try { route(cmdText); } catch (e) { console.error(e); say('The terminal glitches. Try another command.', 'warn'); }
+    }
+
+    // =============================================================
+    // 7. Gemini World Engine (free-text commands)
+    // =============================================================
+    const GEMINI_ENDPOINT = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent';
+    const GEMINI_TIMEOUT_MS = 12000;
+    const VALID_ANIMS = ['IDLE', 'WALK', 'INTERACT', 'CAST'];
+    const SYSTEM_PROMPT = 'You are the AI Dungeon Master and World Engine for a retro 3D Jurassic Park survival text MUD set on Isla Nublar. ' +
+      'The user will input a free-form action. Narrate its result without granting items, healing, or changing the plot outcome. ' +
+      'Return a strict JSON object with the narrative and the real-time 3D Three.js scene parameters. Output ONLY raw JSON matching this schema, no markdown fences:\n' +
+      '{\n  "narrativeText": "Atmosphere and result of the action (2-3 sentences)",\n' +
+      '  "scene3D": {\n    "characterAnimation": "IDLE" | "WALK" | "INTERACT" | "CAST",\n' +
+      '    "lightColor": "#hex color (e.g. #ff6a00 for sirens, #00ff88 for lab, #2288ff for terminals, #ff2200 for danger)",\n' +
+      '    "lightIntensity": 2.2,\n    "fogDensity": 0.04,\n    "cameraShake": false\n  }\n}';
+    let previousState = { characterAnimation: 'IDLE', lightColor: '#ff6a00', fogDensity: 0.04 };
+
+    function getApiKey() {
+      try { return (localStorage.getItem('GEMINI_API_KEY') || '').trim(); } catch (e) { return ''; }
+    }
+
+    function renderApiBadge() {
+      const live = !!getApiKey();
+      document.getElementById('api-status').textContent = live ? '[LIVE API ACTIVE]' : '[OFFLINE SIMULATION]';
+      const badge = document.getElementById('api-badge');
+      badge.classList.toggle('live', live);
+      badge.classList.toggle('offline', !live);
+    }
+
+    // Masked key entry (type=password) so the secret never appears on screen while recording a demo.
+    function closeApiKeyModal() {
+      const modal = document.getElementById('key-modal');
+      const field = document.getElementById('key-input');
+      field.value = '';
+      modal.hidden = true;
+      inputEl.focus();
+    }
+
+    function saveApiKey(clear) {
+      const field = document.getElementById('key-input');
+      const key = clear ? '' : field.value.trim();
+      try {
+        if (clear) localStorage.removeItem('GEMINI_API_KEY');
+        else if (key) localStorage.setItem('GEMINI_API_KEY', key); // empty save keeps the existing key
+      } catch (e) { /* storage unavailable: stay offline */ }
+      renderApiBadge();
+      closeApiKeyModal();
+    }
+
+    function renderApiKeyModal() {
+      const modal = document.getElementById('key-modal');
+      const field = document.getElementById('key-input');
+      field.value = '';
+      field.placeholder = getApiKey() ? '\u2022\u2022\u2022\u2022\u2022\u2022\u2022\u2022 (key saved, type to replace)' : 'Paste Gemini API key';
+      modal.hidden = false;
+      field.focus();
+    }
+
+    function sanitizeWorldData(raw) {
+      if (!raw || typeof raw !== 'object' || typeof raw.narrativeText !== 'string' || !raw.narrativeText.trim()) return null;
+      const s = raw.scene3D && typeof raw.scene3D === 'object' ? raw.scene3D : {};
+      const num = (v, lo, hi, d) => (typeof v === 'number' && isFinite(v)) ? Math.min(hi, Math.max(lo, v)) : d;
+      return {
+        narrativeText: raw.narrativeText.trim(),
+        scene3D: {
+          characterAnimation: VALID_ANIMS.includes(s.characterAnimation) ? s.characterAnimation : 'IDLE',
+          lightColor: typeof s.lightColor === 'string' && /^#[0-9a-fA-F]{6}$/.test(s.lightColor) ? s.lightColor : '#ff6a00',
+          lightIntensity: num(s.lightIntensity, 0.5, 4, 2.2),
+          fogDensity: num(s.fogDensity, 0.01, 0.15, 0.04),
+          cameraShake: s.cameraShake === true
+        }
+      };
+    }
+
+    // Shared Gemini request. Resolves to the raw response text, or null (no key / any failure). Never rejects.
+    async function geminiGenerate(payload) {
+      const key = getApiKey();
+      if (!key || typeof fetch !== 'function') return null;
+      const ctrl = typeof AbortController === 'function' ? new AbortController() : null;
+      const timer = ctrl ? setTimeout(() => ctrl.abort(), GEMINI_TIMEOUT_MS) : null;
+      try {
+        const res = await fetch(GEMINI_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'x-goog-api-key': key },
+          body: JSON.stringify(payload),
+          signal: ctrl ? ctrl.signal : undefined
+        });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const data = await res.json();
+        const text = data && data.candidates && data.candidates[0] && data.candidates[0].content &&
+          data.candidates[0].content.parts && data.candidates[0].content.parts[0].text;
+        if (typeof text !== 'string' || !text.trim()) throw new Error('Empty response');
+        return text;
+      } catch (err) {
+        console.warn('[Gemini] unavailable:', err && err.message);
+        return null;
+      } finally {
+        if (timer) clearTimeout(timer);
+      }
+    }
+
+    // Resolves to a sanitized world object, or null (offline / any failure). Never rejects.
+    async function callGeminiWorldEngine(cmdText) {
+      let text = await geminiGenerate({
+        system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
+        contents: [{ parts: [{ text:
+          'User action: ' + cmdText + '\nCurrent Room: ' + ROOMS[state.room].name +
+          '\nPrevious state: ' + JSON.stringify(previousState) }] }],
+        generationConfig: { response_mime_type: 'application/json', temperature: 0.7 }
+      });
+      if (!text) return null;
+      try {
+        text = text.replace(/^\s*```(?:json)?\s*/i, '').replace(/\s*```\s*$/, '');
+        return sanitizeWorldData(JSON.parse(text));
+      } catch (err) {
+        console.warn('[Gemini World Engine] bad JSON:', err && err.message);
+        return null;
+      }
+    }
+
+    // ---- Dynamic room storytelling ----
+    const NARRATOR_PROMPT = 'You are the AI narrator for Jurassic Park. Write exactly 2 atmospheric, tense sentences describing the current chamber, ' +
+      'reflecting the survivor\'s recent combat wounds, gunfire smoke, and the state of the room. ' +
+      'Second person, present tense. Plain text only: no markdown, no lists, no quotes. ' +
+      'Do not invent exits, items, or enemies beyond the provided context.';
+
+    function buildNarrationContext() {
+      const hp = state.hp;
+      return {
+        room: ROOMS[state.room].name,
+        roomDescription: ROOMS[state.room].desc,
+        playerHP: hp + '/100',
+        wounds: hp >= 90 ? 'unharmed' : hp >= 60 ? 'bruised and scratched' : hp >= 30 ? 'bleeding from raptor claw wounds' : 'critically wounded, barely standing',
+        raptors: state.raptorsAlive ? 'three juvenile raptors alive (pack HP ' + state.raptorHp + '/45)' : 'dead: three corpses in pools of blood in the lobby',
+        gunfireSmoke: state.shotsFired > 0 ? 'shotgun smoke and the smell of cordite linger (' + state.shotsFired + ' shots fired)' : 'no shots fired yet',
+        taserUsed: state.shocksUsed > 0,
+        shellsLeft: state.shells,
+        flaresLeft: state.flares,
+        hasPasscard: state.hasCard
+      };
+    }
+
+    // Pure: clean model text to plain prose, or '' if unusable.
+    function sanitizeNarration(text) {
+      if (typeof text !== 'string') return '';
+      let t = text.replace(/```[\s\S]*?```/g, ' ').replace(/[*_#`>]+/g, '').replace(/\s+/g, ' ').trim();
+      if (t.length > 420) t = t.slice(0, 420).replace(/[^.!?]*$/, '').trim() || t.slice(0, 420);
+      return t;
+    }
+
+    async function narrateRoomWithGemini() {
+      const text = await geminiGenerate({
+        system_instruction: { parts: [{ text: NARRATOR_PROMPT }] },
+        contents: [{ parts: [{ text: 'Game context: ' + JSON.stringify(buildNarrationContext()) }] }],
+        generationConfig: { temperature: 0.85, maxOutputTokens: 160 }
+      });
+      return sanitizeNarration(text);
+    }
+
+    let narrationSeq = 0;
+    // Entering a room or typing `look`: instant offline text, or live Gemini story when a key is set.
+    function showRoom() {
+      const seq = ++narrationSeq;
+      if (!getApiKey()) { say(describeRoom()); return; } // offline: zero latency
+      const myEpoch = epoch;
+      const room = state.room;
+      say('== ' + ROOMS[room].name + ' ==');
+      narrateRoomWithGemini().then((story) => {
+        if (seq !== narrationSeq || myEpoch !== epoch || state.over || state.won) return; // stale
+        say(story || ROOMS[room].desc); // failure -> classic description
+        say(roomFacts().trim());
+      });
+    }
+
+    // Narrative + scene only: never alters HP, ammo, items, or rooms.
+    function applyWorldMutation(world) {
+      const s = world.scene3D;
+      update3DScene({ animation: s.characterAnimation, lightColor: s.lightColor, lightIntensity: s.lightIntensity, fogDensity: s.fogDensity, cameraShake: s.cameraShake });
+      previousState = { characterAnimation: s.characterAnimation, lightColor: s.lightColor, fogDensity: s.fogDensity };
+      if (s.characterAnimation !== 'IDLE') setAnim(s.characterAnimation, 1500);
+      restoreThemeLater(3000);
+      say(world.narrativeText);
+    }
+
+    async function askGemini(cmdText) {
+      const hint = 'Unknown command "' + cmdText + '". Try: look, north/east/west/south, shoot, shock, flare, take card, restore power, inventory, help.';
+      if (!getApiKey()) { say(hint, 'warn'); return; }
+      const myEpoch = epoch;
+      const world = await callGeminiWorldEngine(cmdText);
+      if (myEpoch !== epoch || state.over || state.won) return;
+      if (!world) { say(hint + ' (Gemini unreachable, offline mode.)', 'warn'); return; }
+      applyWorldMutation(world);
+    }
+
+    // =============================================================
+    // 8. Wiring & boot
+    // =============================================================
+    inputEl.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        executeCmd(inputEl.value);
+        inputEl.value = '';
+      }
+    });
+    document.querySelectorAll('.chip').forEach((chip) => {
+      chip.addEventListener('click', () => { executeCmd(chip.getAttribute('data-cmd')); inputEl.focus(); });
+    });
+    const apiBadgeEl = document.getElementById('api-badge');
+    apiBadgeEl.addEventListener('click', renderApiKeyModal);
+    apiBadgeEl.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); renderApiKeyModal(); }
+    });
+
+    document.getElementById('key-save').addEventListener('click', () => saveApiKey(false));
+    document.getElementById('key-clear').addEventListener('click', () => saveApiKey(true));
+    document.getElementById('key-cancel').addEventListener('click', closeApiKeyModal);
+    document.getElementById('key-input').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') { e.preventDefault(); saveApiKey(false); }
+      else if (e.key === 'Escape') { e.preventDefault(); closeApiKeyModal(); }
+    });
+
+    renderApiBadge();
+    applyRoomTheme('lobby');
+    updateBadges();
+    bootIntro();
+    animate();
+
+    // Test hook for automated verification
+    window.__mud = {
+      executeCmd, executeSkill, restartGame, callGeminiWorldEngine, sanitizeWorldData, sanitizeNarration, buildNarrationContext,
+      getState: () => state, transcript, setRng: (f) => { rng = f; },
+      scene3D: () => ({ currentAnim, targetFogDensity, targetLightIntensity, cameraShakeIntensity, flashIntensity, raptorMode: raptorFx.mode, gunKick, muzzleVisible: muzzleFlash.visible, strobeTimer, arcIntensity: arcLight.intensity, corpses: raptors.map((r) => ({ rotZ: r.group.rotation.z, y: r.group.position.y, puddle: !!r.puddle, puddleVisible: !!r.puddle && lobbyGroup.visible })) })
+    };
+  </script>
+</body>
+</html>
