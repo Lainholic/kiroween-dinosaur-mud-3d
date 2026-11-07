@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jurassic Park MUD 3D: Isla Nublar Survival (Frankenstein Track)</title>
+  <title>Dinosaur Survival MUD 3D</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"
           integrity="sha384-CI3ELBVUz9XQO+97x6nwMDPosPR5XvsxW2ua7N1Xeygeh1IxtgqtCkGfQY9WWdHu"
           crossorigin="anonymous"></script>
@@ -158,7 +158,7 @@
 <body>
 
   <header>
-    <div>&#9889; JURASSIC PARK MUD 3D :: ISLA NUBLAR SURVIVAL</div>
+    <div id="brand-header">&#9889; DINOSAUR SURVIVAL MUD 3D :: ASHFEN ISLAND</div>
     <div>
       <span class="badge" id="player-hp-badge">HP 100/100</span>
       <span class="badge" id="ammo-badge">SHELLS 3 | FLARES 2</span>
@@ -218,6 +218,21 @@
   </div>
 
   <script>
+    // Single source of truth for the game's names. The static <title> and header literals in the
+    // HTML must equal these values and are overwritten at boot.
+    const BRAND = Object.freeze({
+      title: 'Dinosaur Survival MUD 3D',
+      island: 'Ashfen Island',
+      company: 'Calderyn Biosciences',
+      card: 'Calderyn Security Passcard',
+      adminLogin: 'calderyn_admin'
+    });
+    document.title = BRAND.title;
+    (function () {
+      const h = document.getElementById('brand-header');
+      if (h) h.textContent = '\u26A1 ' + BRAND.title.toUpperCase() + ' :: ' + BRAND.island.toUpperCase();
+    })();
+
     // =============================================================
     // 0. Pure helpers
     // =============================================================
@@ -424,7 +439,7 @@
     }
 
     // =============================================================
-    // 3. Three.js Scene: Jurassic Dioramas
+    // 3. Three.js Scene: Dinosaur Dioramas
     // =============================================================
     const container = document.getElementById('three-container');
     const scene = new THREE.Scene();
@@ -570,7 +585,7 @@
     labGroup.visible = false;
     scene.add(labGroup);
 
-    // ---- Control room diorama: UNIX mainframe + CRT monitors ----
+    // ---- Control room diorama: mainframe + CRT monitors ----
     const controlGroup = new THREE.Group();
     const cabinet = new THREE.Mesh(new THREE.BoxGeometry(4.5, 3.4, 1.2), new THREE.MeshStandardMaterial({ color: 0x1b2230, roughness: 0.5, metalness: 0.5 }));
     cabinet.position.set(0, 1.7, -3);
@@ -589,6 +604,29 @@
     controlGroup.add(desk);
     controlGroup.visible = false;
     scene.add(controlGroup);
+
+    const penGroup = new THREE.Group();
+    const fenceMat = new THREE.MeshStandardMaterial({ color: 0x4e5745, metalness: 0.7, roughness: 0.6 });
+    for (let x = -4; x <= 4; x += 0.8) {
+      const bar = new THREE.Mesh(new THREE.BoxGeometry(0.12, 3, 0.12), fenceMat);
+      bar.position.set(x, 1.5, -3);
+      penGroup.add(bar);
+    }
+    const fenceRail = new THREE.Mesh(new THREE.BoxGeometry(8.2, 0.14, 0.14), fenceMat);
+    fenceRail.position.set(0, 2.8, -3);
+    penGroup.add(fenceRail);
+    penGroup.visible = false;
+    scene.add(penGroup);
+
+    const generatorGroup = new THREE.Group();
+    const generator = new THREE.Mesh(new THREE.CylinderGeometry(1.2, 1.2, 2.6, 20), new THREE.MeshStandardMaterial({ color: 0x756a40, metalness: 0.65, roughness: 0.5 }));
+    generator.position.set(0, 1.3, -2);
+    generatorGroup.add(generator);
+    const indicator = new THREE.Mesh(new THREE.BoxGeometry(0.7, 0.35, 0.1), new THREE.MeshBasicMaterial({ color: 0xffaa33 }));
+    indicator.position.set(0, 1.8, -0.78);
+    generatorGroup.add(indicator);
+    generatorGroup.visible = false;
+    scene.add(generatorGroup);
 
     // Player is first-person: no third-person body mesh (see shotgun rig below).
 
@@ -652,7 +690,9 @@
     const THEMES = {
       lobby:   { light: '#ff6a00', bg: 0x120604, floor: 0x2a2018, fog: 0.04 },
       lab:     { light: '#00ff88', bg: 0x03120a, floor: 0x16241c, fog: 0.05 },
-      control: { light: '#2288ff', bg: 0x040a14, floor: 0x141a26, fog: 0.035 }
+      control: { light: '#2288ff', bg: 0x040a14, floor: 0x141a26, fog: 0.035 },
+      pen: { light: '#779955', bg: 0x0b1208, floor: 0x273020, fog: 0.06 },
+      generator: { light: '#ffaa33', bg: 0x161009, floor: 0x30291d, fog: 0.045 }
     };
     let currentAnim = 'IDLE';
     let targetLightColor = new THREE.Color(0xff6a00);
@@ -666,6 +706,7 @@
     const LEAD_RAPTOR = 1;       // centre raptor leads the attack
     const LUNGE_SECONDS = 0.24;  // 120ms out + 120ms spring back
     const LUNGE_MAX_Z = 5.5;
+    const STUN_SECONDS = 1.2;    // visual only; the gameplay stun lasts one combat turn
     let gunKick = 0;
     let muzzleTimer = 0;
     let muzzleSpike = false;
@@ -724,6 +765,8 @@
       lobbyGroup.visible = roomId === 'lobby';
       labGroup.visible = roomId === 'lab';
       controlGroup.visible = roomId === 'control';
+      penGroup.visible = roomId === 'pen';
+      generatorGroup.visible = roomId === 'generator';
       update3DScene({ lightColor: th.light, fogDensity: th.fog, lightIntensity: 2.2 });
     }
 
@@ -774,6 +817,7 @@
             const p = 1 - Math.max(0, raptorFx.timer) / LUNGE_SECONDS;
             offZ = (LUNGE_MAX_Z - r.baseZ) * Math.sin(Math.PI * Math.min(1, p));
           } else if (raptorFx.mode === 'blind') { headYaw = Math.sin(t * 25 + r.phase) * 0.8; eye = 0x665500; }
+          else if (raptorFx.mode === 'stun') { headYaw = Math.sin(t * 40 + r.phase) * 0.35; eye = Math.floor(t * 20) % 2 === 0 ? 0x00ffff : 0x225566; offZ = -0.15; }
           r.group.position.set(r.baseX, Math.abs(Math.sin(t * 3 + r.phase)) * 0.04, r.baseZ + offZ);
           r.head.rotation.y = headYaw;
           r.tail.position.x = Math.sin(t * 2 + r.phase) * 0.15;
@@ -841,8 +885,8 @@
     const ROOMS = {
       lobby: {
         name: 'VISITOR CENTER LOBBY',
-        desc: 'Emergency sirens strobe amber across a shattered fossil display. A towering T-Rex skeleton arches over the marble floor, its skull glaring down from the far wall. The park-wide power grid is dead and the fences are down.',
-        exits: { north: 'control', east: 'lab' }
+        desc: 'Emergency sirens strobe amber across a shattered fossil display. A towering T-Rex skeleton arches over the marble floor, its skull glaring down from the far wall. The ' + BRAND.island + ' power grid is dead and the fences are down.',
+        exits: { north: 'control', east: 'lab', west: 'pen' }
       },
       lab: {
         name: 'GENETICS LABORATORY',
@@ -851,23 +895,47 @@
       },
       control: {
         name: 'MAIN CONTROL ROOM',
-        desc: 'A wall of CRT monitors glows cold blue. The UNIX mainframe terminal waits for authorization to restore the power grid.',
-        exits: { south: 'lobby' }
+        desc: 'A wall of CRT monitors glows cold blue. The ' + BRAND.company + ' mainframe terminal waits for authorization to restore the power grid.',
+        exits: { south: 'lobby', east: 'generator' }
+      },
+      pen: {
+        name: 'RAPTOR PEN',
+        desc: 'Bent steel fencing surrounds the dark enclosure. Deep claw marks score the gate; the raptor pack has escaped into the lobby.',
+        exits: { east: 'lobby' }
+      },
+      generator: {
+        name: 'GEOTHERMAL GENERATOR',
+        desc: 'A silent generator looms behind a bank of breakers. Its amber standby light waits for an authorized power restoration.',
+        exits: { west: 'control' }
       }
     };
 
     function freshState() {
-      return { room: 'lobby', hp: 100, shells: 3, flares: 2, hasCard: false, raptorHp: 45, raptorsAlive: true, over: false, won: false, shotsFired: 0, shocksUsed: 0 };
+      return { room: 'lobby', hp: 100, shells: 3, flares: 2, taserCharges: 3, hasCard: false, raptorHp: 45, raptorsAlive: true, over: false, won: false, shotsFired: 0, shocksUsed: 0, stunRecovery: false };
     }
     let state = freshState();
-    let epoch = 0;
+    let epoch = 0;        // bumped on restart
+    let roomVisit = 0;    // bumped on every room change and restart
+    let aiReqSeq = 0;     // id of the newest free-text AI request
+    let aiAppliedSeq = 0; // id of the newest free-text AI request already applied
+    let narrationSeq = 0; // id of the newest room narration request
+
+    // Context token for an AI request. A reply is applied only while shouldApplyAiReply(ctx, currentAiView()) holds.
+    function captureAiContext(kind) { return { epoch, roomVisit, seq: ++aiReqSeq, kind: kind || 'text' }; }
+    // Pure: true only when the reply still belongs to the current epoch/room, game is live, and no newer reply was applied.
+    function shouldApplyAiReply(ctx, cur) {
+      try {
+        return !!ctx && !!cur && ctx.epoch === cur.epoch && ctx.roomVisit === cur.roomVisit && !cur.over && !cur.won && ctx.seq >= cur.appliedSeq;
+      } catch (e) { return false; }
+    }
+    function currentAiView() { return { epoch, roomVisit, over: !!(state && state.over), won: !!(state && state.won), appliedSeq: aiAppliedSeq }; }
 
     function updateBadges() {
       const hpEl = document.getElementById('player-hp-badge');
       hpEl.textContent = 'HP ' + state.hp + '/100';
       hpEl.classList.toggle('low', state.hp <= 30);
       document.getElementById('ammo-badge').textContent =
-        'SHELLS ' + state.shells + ' | FLARES ' + state.flares + (state.hasCard ? ' | CARD' : '');
+        'SHELLS ' + state.shells + ' | FLARES ' + state.flares + ' | TASER ' + state.taserCharges + (state.hasCard ? ' | CARD' : '');
       document.getElementById('hud-room').textContent = state.room;
       document.getElementById('hud-raptor').textContent = (state.raptorsAlive ? state.raptorHp : 0) + '/45';
     }
@@ -881,8 +949,9 @@
           ? '\nTHREAT: 3 juvenile Velociraptors circle in the shadows (pack HP ' + state.raptorHp + '/45). Yellow eyes track your every move.'
           : '\nThree raptor corpses lie in pools of dark blood. The lobby is secured.';
       }
-      if (state.room === 'lab' && !state.hasCard) text += '\nAn InGen Security Passcard lies beside an overturned tray.';
-      if (state.room === 'control') text += state.hasCard ? '\nYour InGen passcard fits the terminal reader. Try: restore power' : '\nThe terminal demands an InGen passcard.';
+      if (state.room === 'lab' && !state.hasCard) text += '\nA ' + BRAND.card + ' lies beside an overturned tray.';
+      if (state.room === 'control') text += state.hasCard ? '\nYour ' + BRAND.company.split(' ')[0] + ' passcard fits the terminal reader. Try: restore power' : '\nThe terminal demands a ' + BRAND.company.split(' ')[0] + ' passcard.';
+      if (state.room === 'generator') text += state.hasCard ? '\nYour passcard authorizes the breakers. Try: restore power' : '\nThe breakers require a ' + BRAND.company.split(' ')[0] + ' passcard.';
       text += '\nExits: ' + Object.keys(r.exits).map((d) => d.toUpperCase() + ' to ' + ROOMS[r.exits[d]].name).join(', ');
       return text;
     }
@@ -902,12 +971,26 @@
       if (state.hp <= 0) gameOver();
     }
 
+    // Pure stun resolution. Never throws; safe defaults on bad input.
+    function resolveStunTurn(input) {
+      try {
+        const o = input || {};
+        const hp = Number(o.raptorHp);
+        const alive = Number.isFinite(hp) && hp > 0;
+        const stunned = o.type === 'shock' && alive && !o.stunRecovery;
+        return { stunned, nextStunRecovery: stunned, counterAllowed: alive && !stunned };
+      } catch (e) {
+        return { stunned: false, nextStunRecovery: false, counterAllowed: false };
+      }
+    }
+
     function gameOver() {
       state.over = true;
+      state.stunRecovery = false;
       setAnim('IDLE');
       update3DScene({ lightColor: '#880011', fogDensity: 0.1, lightIntensity: 1.2 });
       AudioEngine.playShriek();
-      say('*** GAME OVER ***\nThe raptors close in from every side. The terminal screen cuts to static.\nType RESTART to reboot the simulation.', 'danger');
+      say('*** GAME OVER ***\nThe raptors close in from every side. The ' + BRAND.island + ' terminal screen cuts to static.\nType RESTART to reboot the simulation.', 'danger');
     }
 
     const puddleGeo = new THREE.CircleGeometry(0.6, 24);
@@ -969,6 +1052,8 @@
         restoreThemeLater(400);
         line = 'BOOM! The SPAS-12 roars. Buckshot tears into the pack for ' + dmg + ' damage.';
       } else if (type === 'shock') {
+        if (state.taserCharges <= 0) { say('The taser is out of charges.', 'warn'); return { ok: false, reason: 'no-ammo' }; }
+        state.taserCharges--;
         state.shocksUsed++;
         dmg = rng(14, 21);
         AudioEngine.playTaser();
@@ -999,12 +1084,21 @@
         state.raptorHp = Math.max(0, state.raptorHp - dmg);
         if (state.raptorHp > 0) { raptorFx.mode = 'flinch'; raptorFx.timer = 0.3; }
       }
+      // Taser stun (spec section 7): a surviving pack is stunned for this turn only,
+      // unless it is still recovering from a stun on the previous combat turn.
+      const stunTurn = resolveStunTurn({ type, raptorHp: state.raptorHp, stunRecovery: state.stunRecovery });
+      const stunned = stunTurn.stunned;
+      state.stunRecovery = stunTurn.nextStunRecovery;
       let counter = 0;
       if (state.raptorHp <= 0) {
         killRaptors();
         say('The pack shrieks and collapses in pools of dark blood. The lobby is secured.', 'good');
       } else if (blind) {
         say('Blinded, the raptors cannot counter-attack this turn. Pack HP ' + state.raptorHp + '/45.', 'good');
+      } else if (stunned) {
+        raptorFx.mode = 'stun';
+        raptorFx.timer = STUN_SECONDS;
+        say('Stunned by the voltage, the raptors convulse and cannot counter-attack this turn. Pack HP ' + state.raptorHp + '/45.', 'good');
       } else {
         counter = rng(8, 17);
         raptorFx.mode = 'lunge';
@@ -1013,11 +1107,12 @@
         takeDamage(counter);
       }
       updateBadges();
-      return { ok: true, dmg, counter, blind };
+      return { ok: true, dmg, counter, blind, stunned };
     }
 
     function enterRoom(id) {
       state.room = id;
+      roomVisit++;
       applyRoomTheme(id);
       setAnim('WALK', 1000);
       updateBadges();
@@ -1041,18 +1136,18 @@
 
     function takeCard() {
       if (state.room !== 'lab') { say('There is no passcard here.', 'warn'); return; }
-      if (state.hasCard) { say('You already carry the InGen Security Passcard.', 'warn'); return; }
+      if (state.hasCard) { say('You already carry the ' + BRAND.card + '.', 'warn'); return; }
       state.hasCard = true;
       setAnim('INTERACT', 1200);
       AudioEngine.playChime();
       updateBadges();
-      say('You pocket the InGen Security Passcard. Its magnetic strip is still warm.', 'good');
+      say('You pocket the ' + BRAND.card + '. Its magnetic strip is still warm.', 'good');
     }
 
     function restorePower() {
-      if (state.room !== 'control') { say('The terminal is in the Main Control Room.', 'warn'); return; }
+      if (state.room !== 'control' && state.room !== 'generator') { say('Restore power at the Main Control Room or Geothermal Generator.', 'warn'); return; }
       if (!state.hasCard) {
-        say('$ sudo ./restore_power.sh\nACCESS DENIED: InGen security passcard required.', 'danger');
+        say('$ sudo ./restore_power.sh\nACCESS DENIED: ' + BRAND.company.split(' ')[0] + ' security passcard required.', 'danger');
         return;
       }
       state.won = true;
@@ -1060,26 +1155,33 @@
       update3DScene({ lightColor: '#66ffcc', fogDensity: 0.02, lightIntensity: 3 });
       triggerFlash('#66ffcc', 4);
       AudioEngine.playChime();
-      say('$ login: ingen_admin\n$ sudo ./restore_power.sh --grid=all --fences=on\n[ OK ] mounting power grid\n[ OK ] security fences online\n[ OK ] containment re-armed\nIt is a UNIX system. You know this!', 'sys');
-      say('*** VICTORY ***\nPower is restored across Isla Nublar. A rescue helicopter thunders in over the visitor center. You survived.\nType RESTART to play again.', 'good');
+      say('$ login: ' + BRAND.adminLogin + '\n$ sudo ./restore_power.sh --grid=all --fences=on\n[ OK ] mounting power grid\n[ OK ] security fences online\n[ OK ] containment re-armed\nKernel check passed. Every relay answers.', 'sys');
+      say('*** VICTORY ***\n' + BRAND.island + ' hums back to life as the grid comes online. A rescue helicopter thunders in over the visitor center. You survived.\nType RESTART to play again.', 'good');
     }
 
     function showInventory() {
-      say('INVENTORY:\n- SPAS-12 Shotgun (' + state.shells + ' Shells)\n- Road Flare (' + state.flares + ')\n- Cattle Prod Taser\n' + (state.hasCard ? '- InGen Security Passcard' : '- (no passcard yet)'));
+      say('INVENTORY:\n- SPAS-12 Shotgun (' + state.shells + ' Shells)\n- Road Flare (' + state.flares + ')\n- Cattle Prod Taser (' + state.taserCharges + ' charges)\n' + (state.hasCard ? '- ' + BRAND.card : '- (no passcard yet)'));
+    }
+
+    function showStatus() {
+      say('STATUS: HP ' + state.hp + '/100 | Shells ' + state.shells + ' | Flares ' + state.flares + ' | Taser charges ' + state.taserCharges);
     }
 
     function showHelp() {
-      say('COMMANDS: look | north/south/east/west | shoot | shock | flare | take card | restore power | inventory | restart\nGoal: survive the raptors, find the InGen passcard in the lab, restore power in the control room.', 'sys');
+      say('COMMANDS: look | north/south/east/west | shoot/blast | shock | flare | take card | restore power | status | inventory | restart\nGoal: survive the raptors, find the ' + BRAND.company.split(' ')[0] + ' passcard in the lab, restore power at the generator or control room.', 'sys');
     }
 
     function bootIntro() {
-      say('============================================================\n* INGEN MAINFRAME :: ISLA NUBLAR SURVIVAL MUD v1.0 *\n============================================================\nPARK-WIDE POWER GRID FAILURE. SECURITY FENCES OFFLINE. CONTAINMENT BREACHED.', 'sys');
+      say('============================================================\n* ' + BRAND.company.split(' ')[0].toUpperCase() + ' MAINFRAME :: ' + BRAND.island.toUpperCase() + ' SURVIVAL MUD v1.0 *\n============================================================\nISLAND-WIDE POWER GRID FAILURE. SECURITY FENCES OFFLINE. CONTAINMENT BREACHED.', 'sys');
       say(describeRoom());
       say('Type help for commands, or click a quick action below.', 'sys');
     }
 
     function restartGame() {
       epoch++;
+      roomVisit++;
+      narrationSeq++;
+      aiAppliedSeq = aiReqSeq; // replies to earlier requests are dropped
       clearTerminal();
       state = freshState();
       resetRaptors();
@@ -1092,23 +1194,49 @@
     // =============================================================
     // 6. Command router
     // =============================================================
+    // Pure classifier: raw text -> { type, arg? }. Never throws.
+    function classifyCommand(raw) {
+      try {
+        if (typeof raw !== 'string') return { type: 'FREE_TEXT', arg: '' };
+        const c = raw.trim().toLowerCase().replace(/\s+/g, ' ');
+        if (!c) return { type: 'FREE_TEXT', arg: '' };
+        if (c === 'restart') return { type: 'RESTART' };
+        const mv = c.match(/^(?:go |walk |move )?(north|south|east|west|n|s|e|w)$/);
+        if (mv) return { type: 'MOVE', arg: mv[1] };
+        if (/^(shoot|blast|shotgun|fire shotgun)\b/.test(c)) return { type: 'SHOOT' };
+        if (/^(shock|taser|zap)\b/.test(c)) return { type: 'SHOCK' };
+        if (/^(flare|use flare|fire flare|light flare)\b/.test(c)) return { type: 'FLARE' };
+        if (/^(look|l|look around|examine.*)$/.test(c)) return { type: 'LOOK' };
+        if (/^(take|get|grab|pick up) (the )?(security )?(pass ?card|card)$/.test(c)) return { type: 'TAKE_CARD' };
+        if (c.includes('restore power') || c === 'login' || /^use .*(card|terminal)/.test(c)) return { type: 'RESTORE' };
+        if (/^(i|inv|inventory)$/.test(c)) return { type: 'INVENTORY' };
+        if (c === 'status') return { type: 'STATUS' };
+        if (/^(help|\?)$/.test(c)) return { type: 'HELP' };
+        return { type: 'FREE_TEXT', arg: raw.trim() };
+      } catch (e) {
+        return { type: 'FREE_TEXT', arg: '' };
+      }
+    }
+
     function route(raw) {
-      const c = raw.trim().toLowerCase().replace(/\s+/g, ' ');
-      if (c === 'restart') { restartGame(); return; }
+      const cmd = classifyCommand(raw);
+      if (cmd.type === 'RESTART') { restartGame(); return; }
       if (state.over) { say('SIMULATION TERMINATED. Type RESTART to reboot.', 'danger'); return; }
       if (state.won) { say('Power is restored. Type RESTART to play again.', 'good'); return; }
 
-      const mv = c.match(/^(?:go |walk |move )?(north|south|east|west|n|s|e|w)$/);
-      if (mv) { move(DIRS[mv[1]]); return; }
-      if (/^(shoot|shotgun|fire shotgun)\b/.test(c)) { executeSkill('shoot'); return; }
-      if (/^(shock|taser|zap)\b/.test(c)) { executeSkill('shock'); return; }
-      if (/^(flare|use flare|fire flare|light flare)\b/.test(c)) { executeSkill('flare'); return; }
-      if (/^(look|l|look around|examine.*)$/.test(c)) { showRoom(); return; }
-      if (/^(take|get|grab|pick up) (the )?(ingen )?(security )?(pass ?card|card)$/.test(c)) { takeCard(); return; }
-      if (c.includes('restore power') || c === 'login' || /^use .*(card|terminal)/.test(c)) { restorePower(); return; }
-      if (/^(i|inv|inventory)$/.test(c)) { showInventory(); return; }
-      if (/^(help|\?)$/.test(c)) { showHelp(); return; }
-      askGemini(raw.trim());
+      switch (cmd.type) {
+        case 'MOVE': move(DIRS[cmd.arg]); return;
+        case 'SHOOT': executeSkill('shoot'); return;
+        case 'SHOCK': executeSkill('shock'); return;
+        case 'FLARE': executeSkill('flare'); return;
+        case 'LOOK': showRoom(); return;
+        case 'TAKE_CARD': takeCard(); return;
+        case 'RESTORE': restorePower(); return;
+        case 'INVENTORY': showInventory(); return;
+        case 'STATUS': showStatus(); return;
+        case 'HELP': showHelp(); return;
+        default: askGemini(raw.trim());
+      }
     }
 
     function executeCmd(cmdText) {
@@ -1121,9 +1249,11 @@
     // 7. Gemini World Engine (free-text commands)
     // =============================================================
     const GEMINI_ENDPOINT = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent';
-    const GEMINI_TIMEOUT_MS = 12000;
+    const GEMINI_TIMEOUT_MS = 10000;
+    let geminiTimeoutMs = GEMINI_TIMEOUT_MS; // overridable via __mud.setAiTimeout for tests
     const VALID_ANIMS = ['IDLE', 'WALK', 'INTERACT', 'CAST'];
-    const SYSTEM_PROMPT = 'You are the AI Dungeon Master and World Engine for a retro 3D Jurassic Park survival text MUD set on Isla Nublar. ' +
+    const SYSTEM_PROMPT = 'You are the AI Dungeon Master and World Engine for a retro 3D dinosaur survival text MUD "' + BRAND.title + '" set on ' + BRAND.island + ', a research island run by ' + BRAND.company + '. ' +
+      'Never mention other franchises, films, or their characters. ' +
       'The user will input a free-form action. Narrate its result without granting items, healing, or changing the plot outcome. ' +
       'Return a strict JSON object with the narrative and the real-time 3D Three.js scene parameters. Output ONLY raw JSON matching this schema, no markdown fences:\n' +
       '{\n  "narrativeText": "Atmosphere and result of the action (2-3 sentences)",\n' +
@@ -1194,7 +1324,7 @@
       const key = getApiKey();
       if (!key || typeof fetch !== 'function') return null;
       const ctrl = typeof AbortController === 'function' ? new AbortController() : null;
-      const timer = ctrl ? setTimeout(() => ctrl.abort(), GEMINI_TIMEOUT_MS) : null;
+      const timer = ctrl ? setTimeout(() => ctrl.abort(), geminiTimeoutMs) : null;
       try {
         const res = await fetch(GEMINI_ENDPOINT, {
           method: 'POST',
@@ -1236,8 +1366,9 @@
     }
 
     // ---- Dynamic room storytelling ----
-    const NARRATOR_PROMPT = 'You are the AI narrator for Jurassic Park. Write exactly 2 atmospheric, tense sentences describing the current chamber, ' +
+    const NARRATOR_PROMPT = 'You are the AI narrator for "' + BRAND.title + '" on ' + BRAND.island + ', a facility of ' + BRAND.company + '. Write exactly 2 atmospheric, tense sentences describing the current chamber, ' +
       'reflecting the survivor\'s recent combat wounds, gunfire smoke, and the state of the room. ' +
+      'Never mention other franchises or film names. ' +
       'Second person, present tense. Plain text only: no markdown, no lists, no quotes. ' +
       'Do not invent exits, items, or enemies beyond the provided context.';
 
@@ -1261,7 +1392,7 @@
     function sanitizeNarration(text) {
       if (typeof text !== 'string') return '';
       let t = text.replace(/```[\s\S]*?```/g, ' ').replace(/[*_#`>]+/g, '').replace(/\s+/g, ' ').trim();
-      if (t.length > 420) t = t.slice(0, 420).replace(/[^.!?]*$/, '').trim() || t.slice(0, 420);
+      if (t.length === 0 || t.length > 2000) return '';
       return t;
     }
 
@@ -1274,19 +1405,18 @@
       return sanitizeNarration(text);
     }
 
-    let narrationSeq = 0;
-    // Entering a room or typing `look`: instant offline text, or live Gemini story when a key is set.
+    // Entering a room or typing `look`: the base description, threat and exits always print first
+    // with zero latency. With an API key set, a Gemini paragraph is appended afterwards if it arrives
+    // in time and the player is still in the same room.
     function showRoom() {
       const seq = ++narrationSeq;
-      if (!getApiKey()) { say(describeRoom()); return; } // offline: zero latency
-      const myEpoch = epoch;
-      const room = state.room;
-      say('== ' + ROOMS[room].name + ' ==');
+      say(describeRoom());
+      if (!getApiKey()) return;
+      const ctx = captureAiContext('room');
       narrateRoomWithGemini().then((story) => {
-        if (seq !== narrationSeq || myEpoch !== epoch || state.over || state.won) return; // stale
-        say(story || ROOMS[room].desc); // failure -> classic description
-        say(roomFacts().trim());
-      });
+        if (seq !== narrationSeq || !shouldApplyAiReply(ctx, currentAiView())) return; // stale: other room, restart, ended, or newer look
+        if (story) say(story, 'sys'); // failure or empty: the base text already shown stays as is
+      }).catch(() => { /* never surface AI failures */ });
     }
 
     // Narrative + scene only: never alters HP, ammo, items, or rooms.
@@ -1302,10 +1432,11 @@
     async function askGemini(cmdText) {
       const hint = 'Unknown command "' + cmdText + '". Try: look, north/east/west/south, shoot, shock, flare, take card, restore power, inventory, help.';
       if (!getApiKey()) { say(hint, 'warn'); return; }
-      const myEpoch = epoch;
+      const ctx = captureAiContext('text');
       const world = await callGeminiWorldEngine(cmdText);
-      if (myEpoch !== epoch || state.over || state.won) return;
+      if (!shouldApplyAiReply(ctx, currentAiView())) return; // stale: other room, restart, game over, victory, or superseded
       if (!world) { say(hint + ' (Gemini unreachable, offline mode.)', 'warn'); return; }
+      aiAppliedSeq = ctx.seq;
       applyWorldMutation(world);
     }
 
@@ -1343,9 +1474,13 @@
 
     // Test hook for automated verification
     window.__mud = {
-      executeCmd, executeSkill, restartGame, callGeminiWorldEngine, sanitizeWorldData, sanitizeNarration, buildNarrationContext,
+      BRAND, describeRoom, applyWorldMutation, SYSTEM_PROMPT, NARRATOR_PROMPT,
+      get ROOMS() { return JSON.parse(JSON.stringify(ROOMS)); },
+      setAiTimeout: (ms) => { if (Number.isFinite(ms) && ms > 0) geminiTimeoutMs = ms; },
+      shouldApplyAiReply, captureAiContext,
+      executeCmd, classifyCommand, executeSkill, resolveStunTurn, restartGame, callGeminiWorldEngine, sanitizeWorldData, sanitizeNarration, buildNarrationContext,
       getState: () => state, transcript, setRng: (f) => { rng = f; },
-      scene3D: () => ({ currentAnim, targetFogDensity, targetLightIntensity, cameraShakeIntensity, flashIntensity, raptorMode: raptorFx.mode, gunKick, muzzleVisible: muzzleFlash.visible, strobeTimer, arcIntensity: arcLight.intensity, corpses: raptors.map((r) => ({ rotZ: r.group.rotation.z, y: r.group.position.y, puddle: !!r.puddle, puddleVisible: !!r.puddle && lobbyGroup.visible })) })
+      scene3D: () => ({ groups: { lobby: lobbyGroup.visible, lab: labGroup.visible, control: controlGroup.visible, pen: penGroup.visible, generator: generatorGroup.visible }, hudLight: document.getElementById('hud-light').textContent, currentAnim, targetFogDensity, targetLightIntensity, cameraShakeIntensity, flashIntensity, raptorMode: raptorFx.mode, gunKick, muzzleVisible: muzzleFlash.visible, strobeTimer, arcIntensity: arcLight.intensity, corpses: raptors.map((r) => ({ rotZ: r.group.rotation.z, y: r.group.position.y, puddle: !!r.puddle, puddleVisible: !!r.puddle && lobbyGroup.visible })) })
     };
   </script>
 </body>

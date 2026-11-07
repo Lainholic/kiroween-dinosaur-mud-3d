@@ -1,0 +1,1235 @@
+{
+  "suite": "refs",
+  "cases": [
+    {
+      "feature": "명칭 잔존 검색",
+      "name": "README.md:41 index.html",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": "README.md:57 .kiro/specs/dinosaur-survival-spec.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": "README.md:66 /.kiro",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": "README.md:68 /.kiro/specs/requirements.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": "README.md:69 /.kiro/specs/design.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": "README.md:70 /.kiro/specs/tasks.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": "README.md:71 /.kiro/specs/hardening-spec.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/design.md:3 dinosaur-survival-spec.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/design.md:5 requirements.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/design.md:5 index.html",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/design.md:5 tests/verify-textmud.mjs",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/design.md:5 tests/verify-live-gemini.mjs",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/design.md:9 index.html",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/design.md:18 index.html",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/design.md:18 README.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/design.md:18 tests/verify-textmud.mjs",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/design.md:66 index.html",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/design.md:67 tests/legacy-terms.json",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/design.md:69 dinosaur-survival-spec.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/design.md:69 README.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/design.md:69 .kiro/specs/",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/design.md:70 verify-textmud.mjs",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/design.md:70 verify-live-gemini.mjs",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/design.md:81 .kiro/steering/project.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/design.md:155 tests/verify-legacy-terms.mjs",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/design.md:164 tests/legacy-terms.json",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/design.md:165 legacy-allowlist.json",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/design.md:165 tests/legacy-terms.json",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/design.md:165 requirements.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/design.md:165 design.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/design.md:171 verify-textmud.mjs",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/design.md:189 verify-live-gemini.mjs",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/design.md:193 tests/build-report.mjs",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/design.md:193 .kiro/specs/dinosaur-survival-mud-rebrand/verification-report.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/design.md:208 .kiro/specs/",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/design.md:209 requirements.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/design.md:209 design.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/design.md:210 tasks.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/design.md:212 README.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/design.md:212 .kiro/specs/",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/design.md:216 index.html",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/design.md:339 tests/package.json",
+      "status": "skip",
+      "detail": "missing (planned file, noted)"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/design.md:339 index.html",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/design.md:340 tests/lib/pure.mjs",
+      "status": "skip",
+      "detail": "missing (planned file, noted)"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/design.md:340 index.html",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/design.md:358 tasks.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:16 index.html",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:16 README.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:16 tests/",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:17 index.html",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:17 .kiro/specs/dinosaur-survival-spec.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:17 tasks.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:18 index.html",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:18 README.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:18 tests/verify-textmud.mjs",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:19 tasks.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:19 requirements.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:19 design.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:23 index.html",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:29 tests/legacy-terms.json",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:32 dinosaur-survival-spec.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:66 README.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:66 .kiro/specs/",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:66 design.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:66 final-polish-spec.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:66 gemini-world-engine.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:66 hardening-spec.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:66 dinosaur-survival-spec.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:66 requirements.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:66 tasks.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:66 visual-polish-spec.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:67 .kiro/specs/",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:67 index.html",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:69 .kiro/steering/project.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:69 tasks.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:70 tasks.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:71 gemini-world-engine.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:72 .kiro/steering/project.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:112 README.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:113 .kiro/specs/",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:116 README.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:118 README.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:118 .kiro/specs/",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:186 requirements.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:186 design.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:186 tasks.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:187 tasks.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:188 tasks.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:189 tasks.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:191 requirements.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:191 design.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:192 requirements.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:192 design.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:200 index.html",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:200 README.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:200 .kiro/",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:200 tests/",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md:205 tests/",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:5 index.html",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:5 tests/",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:18 tests/.results/preflight.json",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:24 tests/.results/preflight.json",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:28 README.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:28 .kiro/specs/",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:28 .kiro/steering/project.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:30 gemini-world-engine.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:35 .kiro/specs/",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:36 requirements.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:36 design.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:37 tests/.results/spec-changes.json",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:40 tasks.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:40 .kiro/specs/tasks.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:43 dinosaur-survival-spec.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:43 README.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:43 .kiro/specs/",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:53 index.html",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:72 tests/.results/repro.json",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:93 tests/package.json",
+      "status": "skip",
+      "detail": "missing (planned file, noted)"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:94 tests/lib/browser.mjs",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:95 index.html",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:99 tests/verify-textmud.mjs",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:119 index.html",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:119 tests/.results/layout.json",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:124 tests/properties/card-command.test.mjs",
+      "status": "skip",
+      "detail": "missing (planned file, noted)"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:129 tests/properties/rejected-actions.test.mjs",
+      "status": "skip",
+      "detail": "missing (planned file, noted)"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:134 tests/properties/stun-machine.test.mjs",
+      "status": "skip",
+      "detail": "missing (planned file, noted)"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:139 tests/properties/ai-apply.test.mjs",
+      "status": "skip",
+      "detail": "missing (planned file, noted)"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:144 tests/properties/ai-no-state.test.mjs",
+      "status": "skip",
+      "detail": "missing (planned file, noted)"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:149 tests/properties/sanitize-narration.test.mjs",
+      "status": "skip",
+      "detail": "missing (planned file, noted)"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:154 tests/legacy-terms.json",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:154 tests/legacy-allowlist.json",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:155 tests/verify-legacy-terms.mjs",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:155 index.html",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:155 README.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:156 tests/.results/legacy-scan.json",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:161 tests/properties/legacy-scan.test.mjs",
+      "status": "skip",
+      "detail": "missing (planned file, noted)"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:165 tests/",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:165 verify-textmud.mjs",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:166 README.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:166 .kiro/specs/",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:171 tests/lib/scrub.mjs",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:171 tests/verify-live-gemini.mjs",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:172 tests/.results/live.json",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:177 tests/properties/scrub.test.mjs",
+      "status": "skip",
+      "detail": "missing (planned file, noted)"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:182 tests/build-report.mjs",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:182 .kiro/specs/dinosaur-survival-mud-rebrand/verification-report.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:191 tests/properties/report.test.mjs",
+      "status": "skip",
+      "detail": "missing (planned file, noted)"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md:196 .kiro/specs/dinosaur-survival-mud-rebrand/tasks.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/verification-report.md:49 .kiro/specs/dinosaur-survival-spec.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/verification-report.md:50 .kiro/specs/final-polish-spec.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/verification-report.md:51 .kiro/specs/hardening-spec.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/verification-report.md:52 .kiro/specs/visual-polish-spec.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/verification-report.md:53 .kiro/specs/requirements.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/verification-report.md:54 .kiro/specs/design.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/verification-report.md:55 .kiro/specs/tasks.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/verification-report.md:56 .kiro/specs/dinosaur-survival-mud-rebrand/requirements.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/verification-report.md:57 .kiro/specs/dinosaur-survival-mud-rebrand/design.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-mud-rebrand/verification-report.md:58 .kiro/specs/dinosaur-survival-mud-rebrand/tasks.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-spec.md:88 index.html",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/dinosaur-survival-spec.md:88 src/apps/textmud-3d/index.html",
+      "status": "skip",
+      "detail": "missing (planned file, noted)"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/final-polish-spec.md:3 index.html",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/gemini-world-engine.md:5 index.html",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/gemini-world-engine.md:50 index.html",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/gemini-world-engine.md:58 index.html",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/gemini-world-engine.md:80 index.html",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/gemini-world-engine.md:80 .kiro/specs/gemini-world-engine.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/hardening-spec.md:3 index.html",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/hardening-spec.md:48 _reports/",
+      "status": "skip",
+      "detail": "missing (planned file, noted)"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/hardening-spec.md:48 _work/",
+      "status": "skip",
+      "detail": "missing (planned file, noted)"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/requirements.md:3 dinosaur-survival-spec.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/tasks.md:3 index.html",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/tasks.md:3 .kiro/specs/",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/tasks.md:3 tests/",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/tasks.md:5 src/apps/textmud-3d/",
+      "status": "skip",
+      "detail": "missing (planned file, noted)"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/tasks.md:5 .kiro/specs/textmud-3d/",
+      "status": "skip",
+      "detail": "missing (planned file, noted)"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/tasks.md:5 dinosaur-survival-spec.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/tasks.md:10 dinosaur-survival-spec.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/tasks.md:15 dinosaur-survival-spec.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/tasks.md:32 requirements.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/tasks.md:32 design.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/tasks.md:33 requirements.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/tasks.md:33 design.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/tasks.md:38 dinosaur-survival-spec.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/tasks.md:38 index.html",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/tasks.md:43 visual-polish-spec.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/tasks.md:43 index.html",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/tasks.md:48 final-polish-spec.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/tasks.md:48 index.html",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/tasks.md:53 hardening-spec.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/tasks.md:53 index.html",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/tasks.md:58 gemini-world-engine.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/tasks.md:58 index.html",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/tasks.md:66 index.html",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/tasks.md:73 .kiro/specs/dinosaur-survival-mud-rebrand/",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/tasks.md:75 dinosaur-survival-spec.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/tasks.md:75 README.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/tasks.md:75 design.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/tasks.md:75 requirements.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/tasks.md:75 tasks.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/tasks.md:76 tests/.results/preflight.json",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/tasks.md:77 index.html",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/tasks.md:78 README.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/tasks.md:79 requirements.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/tasks.md:79 design.md",
+      "status": "pass",
+      "detail": "exists"
+    },
+    {
+      "feature": "명칭 잔존 검색",
+      "name": ".kiro/specs/visual-polish-spec.md:3 index.html",
+      "status": "pass",
+      "detail": "exists"
+    }
+  ]
+}

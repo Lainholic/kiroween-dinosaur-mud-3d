@@ -1,6 +1,6 @@
-# Specification: Jurassic Park MUD 3D — Final Polish & Dynamic AI Storytelling
+# Specification: Dinosaur Survival MUD 3D — Final Polish & Dynamic AI Storytelling
 
-This specification finalizes `src/apps/textmud-3d/index.html` for official hackathon demo video recording.
+This specification finalizes `index.html` for official hackathon demo video recording.
 
 ---
 
@@ -18,7 +18,7 @@ This specification finalizes `src/apps/textmud-3d/index.html` for official hacka
 - **WHEN** the player enters a room or types `look`:
   - **IF** a Gemini API key is present:
     - Send current game context (Room name, player HP, raptors alive/dead status, shells left, items held) to Gemini.
-    - System prompt: *"You are the AI narrator for Jurassic Park. Write 2-3 atmospheric, tense sentences describing the current chamber, reflecting the survivor's recent combat wounds, gunfire smoke, and the state of the room."*
+    - System prompt: *"You are the AI narrator for Ashfen Island. Write 2-3 atmospheric, tense sentences describing the current chamber, reflecting the survivor's recent combat wounds, gunfire smoke, and the state of the room."*
     - Stream the generated AI story into the terminal via `appendTeletype`.
   - **ELSE** (Offline Mode / No Key / Network Failure):
     - Instantly fall back to the pre-written classic MUD room descriptions without any latency.

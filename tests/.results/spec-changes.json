@@ -1,0 +1,16 @@
+﻿{
+  "task": "2.1",
+  "changedFiles": [
+    {"path": ".kiro/specs/dinosaur-survival-spec.md", "sections": ["제목", "1. Setting & Narrative Premise", "방 그래프/아이템", "구현 지시", "미확인 사항(권리)"]},
+    {"path": ".kiro/specs/final-polish-spec.md", "sections": ["제목", "AI 내레이터 프롬프트"]},
+    {"path": ".kiro/specs/hardening-spec.md", "sections": ["제목"]},
+    {"path": ".kiro/specs/visual-polish-spec.md", "sections": ["제목"]},
+    {"path": ".kiro/specs/requirements.md", "sections": ["LEGACY 배너", "이전 버전 기록", "현재 5개 방 구성 (요약)"]},
+    {"path": ".kiro/specs/design.md", "sections": ["이전 버전 기록", "현재 5개 방 구성 (요약)"]},
+    {"path": ".kiro/specs/tasks.md", "sections": ["제목", "항목 20", "항목 21", "항목 11", "항목 22 (task 2.2 파일 이름 변경 기록)", "항목 22-26 / 병합 이력 (Rebrand work)"]},
+    {"path": ".kiro/specs/dinosaur-survival-mud-rebrand/requirements.md", "sections": ["소개", "Glossary: Legacy_Terms", "요구사항 4 (로그인/승리/대사/카드 명령)", "파일명 목록", "파일 이름 변경 조항"]},
+    {"path": ".kiro/specs/dinosaur-survival-mud-rebrand/design.md", "sections": ["현황 표", "파일 이름 변경", "교체 표", "classifyCommand", "옛 명칭 검사 데이터", "legacy-terms.json 예시", "Property 2"]},
+    {"path": ".kiro/specs/dinosaur-survival-mud-rebrand/tasks.md", "sections": ["3.2", "5.7", "6.1"]}
+  ],
+  "remainingLegacyHits": 0
+}

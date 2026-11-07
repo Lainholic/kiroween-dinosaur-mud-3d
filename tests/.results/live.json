@@ -1,0 +1,39 @@
+{
+  "status": "ok",
+  "okCount": 3,
+  "calls": [
+    {
+      "n": 1,
+      "httpStatus": 200,
+      "responseTextLength": 342,
+      "shape": {
+        "isJson": true,
+        "hasText": true
+      },
+      "legacyTermsFound": "no",
+      "status": "ok"
+    },
+    {
+      "n": 2,
+      "httpStatus": 200,
+      "responseTextLength": 357,
+      "shape": {
+        "isJson": true,
+        "hasText": true
+      },
+      "legacyTermsFound": "no",
+      "status": "ok"
+    },
+    {
+      "n": 3,
+      "httpStatus": 200,
+      "responseTextLength": 318,
+      "shape": {
+        "isJson": true,
+        "hasText": true
+      },
+      "legacyTermsFound": "no",
+      "status": "ok"
+    }
+  ]
+}

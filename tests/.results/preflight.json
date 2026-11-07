@@ -1,0 +1,101 @@
+﻿{
+    "note":  "Historical record: the old spec file was renamed to dinosaur-survival-spec.md in task 2.2",
+    "task":  "1.1",
+    "timestamp":  "2026-11-07T14:44:53.4093321+09:00",
+    "paths":  [
+                  {
+                      "input":  "c:\\AI\\projects\\kiroween-textmud-3d",
+                      "resolvePath":  "C:\\AI\\projects\\kiroween-textmud-3d",
+                      "linkType":  null,
+                      "gitToplevel":  "C:/AI/projects/kiroween-textmud-3d"
+                  },
+                  {
+                      "input":  "C:\\AI\\projects\\kiroween-textmud-3d",
+                      "resolvePath":  "C:\\AI\\projects\\kiroween-textmud-3d",
+                      "linkType":  null,
+                      "gitToplevel":  "C:/AI/projects/kiroween-textmud-3d"
+                  }
+              ],
+    "errors":  [
+
+               ],
+    "sameRepo":  true,
+    "evidence":  "Resolve-Path equal (case-insensitive): True; toplevel equal: True; LinkType both null/same: True. Drive-letter case only differs; Windows paths are case-insensitive.",
+    "gitStatusPorcelain":  [
+                               " M .kiro/specs/design.md",
+                               " M .kiro/specs/final-polish-spec.md",
+                               " M .kiro/specs/gemini-world-engine.md",
+                               " M .kiro/specs/hardening-spec.md",
+                               " M .kiro/specs/dinosaur-survival-spec.md (renamed)",
+                               " M .kiro/specs/requirements.md",
+                               " M .kiro/specs/tasks.md",
+                               " M .kiro/specs/visual-polish-spec.md",
+                               " M README.md",
+                               " M index.html",
+                               "?? .kiro/specs/dinosaur-survival-mud-rebrand/",
+                               "?? requirements.md",
+                               "?? tests/"
+                           ],
+    "uncommittedFiles":  [
+                             ".kiro/specs/design.md",
+                             ".kiro/specs/final-polish-spec.md",
+                             ".kiro/specs/gemini-world-engine.md",
+                             ".kiro/specs/hardening-spec.md",
+                             ".kiro/specs/dinosaur-survival-spec.md (renamed)",
+                             ".kiro/specs/requirements.md",
+                             ".kiro/specs/tasks.md",
+                             ".kiro/specs/visual-polish-spec.md",
+                             "README.md",
+                             "index.html",
+                             ".kiro/specs/dinosaur-survival-mud-rebrand/",
+                             "requirements.md",
+                             "tests/"
+                         ],
+    "note":  "Uncommitted changes preserved (Codex-made); never reverted.",
+    "snapshot_1_2":  {
+                         "task":  "1.2",
+                         "timestamp":  "2026-11-07T14:45:40.4543040+09:00",
+                         "snapshotPath":  "C:\\Users\\USER\\AppData\\Local\\Temp\\mud-snapshot-20261107-144539",
+                         "files":  [
+                                       "status.txt",
+                                       "tracked.patch",
+                                       "untracked\\"
+                                   ],
+                         "diffGitCount":  10,
+                         "untrackedCopyCount":  9,
+                         "statusTrackedEntries":  10,
+                         "statusUntrackedExpanded":  9,
+                         "countingMethod":  "tracked = count of \"diff --git\" lines in git diff --binary vs non-?? porcelain lines; untracked = files copied from git ls-files --others --exclude-standard (dirs expanded) vs \"git status --porcelain -uall\" ?? lines"
+                     },
+    "read_1_3":  {
+                     "task":  "1.3",
+                     "timestamp":  "2026-11-07T14:50:32.1874340+09:00",
+                     "readCount":  10,
+                     "readNineDocs":  [
+                                          "README.md",
+                                          ".kiro/specs/design.md",
+                                          ".kiro/specs/final-polish-spec.md",
+                                          ".kiro/specs/gemini-world-engine.md",
+                                          ".kiro/specs/hardening-spec.md",
+                                          ".kiro/specs/dinosaur-survival-spec.md (renamed)",
+                                          ".kiro/specs/requirements.md",
+                                          ".kiro/specs/tasks.md",
+                                          ".kiro/specs/visual-polish-spec.md"
+                                      ],
+                     "steeringFile":  ".kiro/steering/project.md",
+                     "steeringExists":  true,
+                     "globalSteeringDir":  "~/.kiro/steering",
+                     "globalSteeringDirExists":  false,
+                     "globalRulesNote":  "Workspace-level rule \"project\" injected in session; identical in content to .kiro/steering/project.md",
+                     "missing":  [
+
+                                 ],
+                     "gemini_world_engine":  {
+                                                 "bytes":  4589,
+                                                 "bom":  false,
+                                                 "strictUtf8":  "OK",
+                                                 "replacementChar":  false,
+                                                 "verdict":  "File is valid UTF-8 (Korean text); any garbling is terminal display only; file not modified"
+                                             }
+                 }
+}

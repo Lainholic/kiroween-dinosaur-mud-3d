@@ -1,6 +1,6 @@
-# Jurassic Park Text-MUD 3D: Hardening & Bug Fix Spec
+# Dinosaur Survival Text-MUD 3D: Hardening & Bug Fix Spec
 
-> **Target**: `src/apps/textmud-3d/index.html` & `.gitignore`  
+> **Target**: `index.html` & `.gitignore`  
 > **Source**: Adversarial Audit by Terra (`gpt-6.1-terra`) & DeepSeek (`DeepSeek-V4.1-Flash`)  
 > **Status**: APPROVED for Kiro Implementation
 

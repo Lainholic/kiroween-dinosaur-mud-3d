@@ -1,6 +1,6 @@
-# Specification: Jurassic Park MUD 3D — Visual Polish & Combat Feedback
+# Specification: Dinosaur Survival MUD 3D — Visual Polish & Combat Feedback
 
-This specification enhances `src/apps/textmud-3d/index.html` with visceral combat feedback, dead raptor corpses, first-person weapon animations, and screen impact effects.
+This specification enhances `index.html` with visceral combat feedback, dead raptor corpses, first-person weapon animations, and screen impact effects.
 
 ---
 

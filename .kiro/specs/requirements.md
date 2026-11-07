@@ -1,5 +1,7 @@
 # Requirements Specification: Text-MUD 3D (Frankenstein Track)
 
+> **LEGACY (v1 prototype).** This document describes the original dungeon/mage prototype. The shipped game is the Dinosaur Survival MUD (5 rooms); its current rules are in `dinosaur-survival-spec.md`. Rewrite pending (tasks.md item 21).
+
 ## 1. Problem & Concept
 - **The Chimera**: Stitch together two wildly incompatible eras of computing into a unified, surprisingly powerful application:
   1. An authentic **1980s monochrome CRT text-based MUD (Multi-User Dungeon) terminal** with amber/phosphor scanlines and mechanical teletype sound synthesis.
@@ -60,3 +62,13 @@
 ### [R4] Developer & Judge Polish
 - **R4.1 Live HUD**: The system **SHALL** display an overlay showing real-time FPS, current FSM state, active light hex, fog density, and perceived latency.
 - **R4.2 API Key Configuration**: The system **SHALL** provide an in-terminal or non-intrusive key toggle (`/key` or top badge) allowing judges to run live against their own Gemini API keys or utilize the built-in offline simulation mode.
+
+## 이전 버전 기록
+
+- v1은 던전/마법사 프로토타입이었고, 그 다음 단계(v1.5)는 3개 방(로비, 연구실, 관제실)으로 구성된 공룡 생존 MUD였다. 이 기록은 이력이며 현재 규칙이 아니다.
+
+## 현재 5개 방 구성 (요약)
+
+- 로비(Visitor Center Lobby)에서 북쪽(N)은 관제실(Main Control Room), 동쪽(E)은 연구실(Genetics Laboratory), 서쪽(W)은 랩터 우리(Raptor Pen)다.
+- 관제실에서 동쪽(E)은 발전소(Geothermal Generator)다.
+- 자세한 규칙은 dinosaur-survival-spec.md를 따른다.

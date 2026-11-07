@@ -1,0 +1,6 @@
+{
+  "entries": [
+    { "path": "tests/legacy-terms.json", "reason": "Defines the legacy term list itself." },
+    { "path": "tests/legacy-allowlist.json", "reason": "Allowlist definition file." }
+  ]
+}

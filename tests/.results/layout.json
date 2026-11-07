@@ -1,0 +1,309 @@
+{
+  "suite": "layout",
+  "env": {
+    "browser": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"
+  },
+  "note": "headless software rendering only; real display not checked",
+  "cases": [
+    {
+      "feature": "왼쪽 텍스트 잘림",
+      "name": "1920x1080 header",
+      "status": "pass",
+      "detail": "l=0.0 t=0.0 r=1920.0 b=44.0 (viewport 1920x1080)",
+      "env": {
+        "browser": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+        "viewport": "1920x1080"
+      }
+    },
+    {
+      "feature": "왼쪽 텍스트 잘림",
+      "name": "1920x1080 #brand-header",
+      "status": "pass",
+      "detail": "l=20.0 t=11.5 r=392.1 b=30.5 (viewport 1920x1080)",
+      "env": {
+        "browser": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+        "viewport": "1920x1080"
+      }
+    },
+    {
+      "feature": "왼쪽 텍스트 잘림",
+      "name": "1920x1080 intro first log node",
+      "status": "pass",
+      "detail": "l=16.0 t=68.0 r=780.4 b=151.2 (viewport 1920x1080) firstCharLeft=16 panelLeft=0.0 panelRight=806.4",
+      "env": {
+        "browser": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+        "viewport": "1920x1080"
+      }
+    },
+    {
+      "feature": "왼쪽 텍스트 잘림",
+      "name": "1920x1080 longest room description (lobby)",
+      "status": "pass",
+      "detail": "l=16.0 t=370.4 r=780.4 b=515.9 (viewport 1920x1080) firstCharLeft=16 panelLeft=0.0 panelRight=806.4",
+      "env": {
+        "browser": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+        "viewport": "1920x1080"
+      }
+    },
+    {
+      "feature": "왼쪽 텍스트 잘림",
+      "name": "1920x1080 .chip look",
+      "status": "pass",
+      "detail": "l=16.0 t=1003.0 r=60.4 b=1023.0 (viewport 1920x1080)",
+      "env": {
+        "browser": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+        "viewport": "1920x1080"
+      }
+    },
+    {
+      "feature": "왼쪽 텍스트 잘림",
+      "name": "1920x1080 .chip shoot",
+      "status": "pass",
+      "detail": "l=66.4 t=1003.0 r=117.4 b=1023.0 (viewport 1920x1080)",
+      "env": {
+        "browser": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+        "viewport": "1920x1080"
+      }
+    },
+    {
+      "feature": "왼쪽 텍스트 잘림",
+      "name": "1920x1080 .chip shock",
+      "status": "pass",
+      "detail": "l=123.4 t=1003.0 r=174.4 b=1023.0 (viewport 1920x1080)",
+      "env": {
+        "browser": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+        "viewport": "1920x1080"
+      }
+    },
+    {
+      "feature": "왼쪽 텍스트 잘림",
+      "name": "1920x1080 .chip flare",
+      "status": "pass",
+      "detail": "l=180.4 t=1003.0 r=231.5 b=1023.0 (viewport 1920x1080)",
+      "env": {
+        "browser": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+        "viewport": "1920x1080"
+      }
+    },
+    {
+      "feature": "왼쪽 텍스트 잘림",
+      "name": "1920x1080 .chip north",
+      "status": "pass",
+      "detail": "l=237.5 t=1003.0 r=288.5 b=1023.0 (viewport 1920x1080)",
+      "env": {
+        "browser": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+        "viewport": "1920x1080"
+      }
+    },
+    {
+      "feature": "왼쪽 텍스트 잘림",
+      "name": "1920x1080 .chip east",
+      "status": "pass",
+      "detail": "l=294.5 t=1003.0 r=338.9 b=1023.0 (viewport 1920x1080)",
+      "env": {
+        "browser": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+        "viewport": "1920x1080"
+      }
+    },
+    {
+      "feature": "왼쪽 텍스트 잘림",
+      "name": "1920x1080 .chip take card",
+      "status": "pass",
+      "detail": "l=344.9 t=1003.0 r=422.3 b=1023.0 (viewport 1920x1080)",
+      "env": {
+        "browser": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+        "viewport": "1920x1080"
+      }
+    },
+    {
+      "feature": "왼쪽 텍스트 잘림",
+      "name": "1920x1080 .chip restore power",
+      "status": "pass",
+      "detail": "l=428.3 t=1003.0 r=532.1 b=1023.0 (viewport 1920x1080)",
+      "env": {
+        "browser": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+        "viewport": "1920x1080"
+      }
+    },
+    {
+      "feature": "왼쪽 텍스트 잘림",
+      "name": "1920x1080 #mud-input",
+      "status": "pass",
+      "detail": "l=33.6 t=1047.0 r=788.4 b=1063.0 (viewport 1920x1080)",
+      "env": {
+        "browser": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+        "viewport": "1920x1080"
+      }
+    },
+    {
+      "feature": "왼쪽 텍스트 잘림",
+      "name": "1920x1080 #log scrollWidth<=clientWidth",
+      "status": "pass",
+      "detail": "scrollWidth=772 clientWidth=772",
+      "env": {
+        "browser": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+        "viewport": "1920x1080"
+      }
+    },
+    {
+      "feature": "왼쪽 텍스트 잘림",
+      "name": "1920x1080 .terminal-panel scrollWidth<=clientWidth",
+      "status": "pass",
+      "detail": "scrollWidth=804 clientWidth=804",
+      "env": {
+        "browser": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+        "viewport": "1920x1080"
+      }
+    },
+    {
+      "feature": "왼쪽 텍스트 잘림",
+      "name": "1280x720 header",
+      "status": "pass",
+      "detail": "l=0.0 t=0.0 r=1280.0 b=44.0 (viewport 1280x720)",
+      "env": {
+        "browser": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+        "viewport": "1280x720"
+      }
+    },
+    {
+      "feature": "왼쪽 텍스트 잘림",
+      "name": "1280x720 #brand-header",
+      "status": "pass",
+      "detail": "l=20.0 t=11.5 r=392.1 b=30.5 (viewport 1280x720)",
+      "env": {
+        "browser": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+        "viewport": "1280x720"
+      }
+    },
+    {
+      "feature": "왼쪽 텍스트 잘림",
+      "name": "1280x720 intro first log node",
+      "status": "pass",
+      "detail": "l=16.0 t=57.0 r=505.6 b=161.0 (viewport 1280x720) firstCharLeft=16 panelLeft=0.0 panelRight=537.6",
+      "env": {
+        "browser": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+        "viewport": "1280x720"
+      }
+    },
+    {
+      "feature": "왼쪽 텍스트 잘림",
+      "name": "1280x720 longest room description (lobby)",
+      "status": "pass",
+      "detail": "l=16.0 t=421.8 r=505.6 b=608.9 (viewport 1280x720) firstCharLeft=16 panelLeft=0.0 panelRight=537.6",
+      "env": {
+        "browser": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+        "viewport": "1280x720"
+      }
+    },
+    {
+      "feature": "왼쪽 텍스트 잘림",
+      "name": "1280x720 .chip look",
+      "status": "pass",
+      "detail": "l=16.0 t=617.0 r=60.4 b=637.0 (viewport 1280x720)",
+      "env": {
+        "browser": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+        "viewport": "1280x720"
+      }
+    },
+    {
+      "feature": "왼쪽 텍스트 잘림",
+      "name": "1280x720 .chip shoot",
+      "status": "pass",
+      "detail": "l=66.4 t=617.0 r=117.4 b=637.0 (viewport 1280x720)",
+      "env": {
+        "browser": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+        "viewport": "1280x720"
+      }
+    },
+    {
+      "feature": "왼쪽 텍스트 잘림",
+      "name": "1280x720 .chip shock",
+      "status": "pass",
+      "detail": "l=123.4 t=617.0 r=174.4 b=637.0 (viewport 1280x720)",
+      "env": {
+        "browser": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+        "viewport": "1280x720"
+      }
+    },
+    {
+      "feature": "왼쪽 텍스트 잘림",
+      "name": "1280x720 .chip flare",
+      "status": "pass",
+      "detail": "l=180.4 t=617.0 r=231.5 b=637.0 (viewport 1280x720)",
+      "env": {
+        "browser": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+        "viewport": "1280x720"
+      }
+    },
+    {
+      "feature": "왼쪽 텍스트 잘림",
+      "name": "1280x720 .chip north",
+      "status": "pass",
+      "detail": "l=237.5 t=617.0 r=288.5 b=637.0 (viewport 1280x720)",
+      "env": {
+        "browser": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+        "viewport": "1280x720"
+      }
+    },
+    {
+      "feature": "왼쪽 텍스트 잘림",
+      "name": "1280x720 .chip east",
+      "status": "pass",
+      "detail": "l=294.5 t=617.0 r=338.9 b=637.0 (viewport 1280x720)",
+      "env": {
+        "browser": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+        "viewport": "1280x720"
+      }
+    },
+    {
+      "feature": "왼쪽 텍스트 잘림",
+      "name": "1280x720 .chip take card",
+      "status": "pass",
+      "detail": "l=344.9 t=617.0 r=422.3 b=637.0 (viewport 1280x720)",
+      "env": {
+        "browser": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+        "viewport": "1280x720"
+      }
+    },
+    {
+      "feature": "왼쪽 텍스트 잘림",
+      "name": "1280x720 .chip restore power",
+      "status": "pass",
+      "detail": "l=16.0 t=643.0 r=119.8 b=663.0 (viewport 1280x720)",
+      "env": {
+        "browser": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+        "viewport": "1280x720"
+      }
+    },
+    {
+      "feature": "왼쪽 텍스트 잘림",
+      "name": "1280x720 #mud-input",
+      "status": "pass",
+      "detail": "l=33.6 t=687.0 r=519.6 b=703.0 (viewport 1280x720)",
+      "env": {
+        "browser": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+        "viewport": "1280x720"
+      }
+    },
+    {
+      "feature": "왼쪽 텍스트 잘림",
+      "name": "1280x720 #log scrollWidth<=clientWidth",
+      "status": "pass",
+      "detail": "scrollWidth=498 clientWidth=498",
+      "env": {
+        "browser": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+        "viewport": "1280x720"
+      }
+    },
+    {
+      "feature": "왼쪽 텍스트 잘림",
+      "name": "1280x720 .terminal-panel scrollWidth<=clientWidth",
+      "status": "pass",
+      "detail": "scrollWidth=536 clientWidth=536",
+      "env": {
+        "browser": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+        "viewport": "1280x720"
+      }
+    }
+  ]
+}

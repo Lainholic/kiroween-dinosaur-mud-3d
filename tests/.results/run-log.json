@@ -1,0 +1,65 @@
+{
+  "task": "9",
+  "timestamp": "2026-11-07T07:23:39.945Z",
+  "repeatRuns": [
+    {
+      "cmd": "node tests/verify-layout.mjs",
+      "exitCode": 0
+    },
+    {
+      "cmd": "node tests/verify-layout.mjs",
+      "exitCode": 0
+    },
+    {
+      "cmd": "node tests/verify-layout.mjs",
+      "exitCode": 0
+    },
+    {
+      "cmd": "node tests/verify-ai-fake.mjs",
+      "exitCode": 0
+    },
+    {
+      "cmd": "node tests/verify-ai-fake.mjs",
+      "exitCode": 0
+    },
+    {
+      "cmd": "node tests/verify-ai-fake.mjs",
+      "exitCode": 0
+    }
+  ],
+  "commands": [
+    {
+      "cmd": "node tests/verify-legacy-terms.mjs",
+      "exitCode": 0
+    },
+    {
+      "cmd": "node tests/verify-refs.mjs",
+      "exitCode": 0
+    },
+    {
+      "cmd": "node tests/verify-textmud.mjs",
+      "exitCode": 0
+    },
+    {
+      "cmd": "node tests/verify-ai-fake.mjs",
+      "exitCode": 0
+    },
+    {
+      "cmd": "node tests/verify-layout.mjs",
+      "exitCode": 0
+    },
+    {
+      "cmd": "node tests/repro-bugs.mjs",
+      "exitCode": 0
+    },
+    {
+      "cmd": "node tests/verify-live-gemini.mjs",
+      "exitCode": 4,
+      "note": "HTTP 402 (외부 결제/할당량 문제): 실제 AI API 미검증"
+    },
+    {
+      "cmd": "node tests/build-report.mjs",
+      "exitCode": 0
+    }
+  ]
+}

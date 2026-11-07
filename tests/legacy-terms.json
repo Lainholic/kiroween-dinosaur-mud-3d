@@ -1,0 +1,27 @@
+{
+  "description": "Legacy franchise terms that must not appear in the project. Matching is case-insensitive.",
+  "terms": [
+    { "term": "Jurassic Park", "wordBoundary": true },
+    { "term": "Jurassic", "wordBoundary": true },
+    { "term": "Isla Nublar", "wordBoundary": true },
+    { "term": "Nublar", "wordBoundary": true },
+    { "term": "InGen", "wordBoundary": true },
+    { "term": "ingen_admin", "wordBoundary": true },
+    { "term": "It is a UNIX system", "wordBoundary": true },
+    { "term": "You know this", "wordBoundary": true },
+    { "term": "Hammond", "wordBoundary": true },
+    { "term": "Malcolm", "wordBoundary": true },
+    { "term": "Nedry", "wordBoundary": true },
+    { "term": "Sattler", "wordBoundary": true },
+    { "term": "Isla Sorna", "wordBoundary": true },
+    { "term": "spared no expense", "wordBoundary": true },
+    { "term": "clever girl", "wordBoundary": true },
+    { "term": "life finds a way", "wordBoundary": true }
+  ],
+  "excludedOnPurpose": [
+    {
+      "term": "Grant",
+      "reason": "Collides with the ordinary English word 'grant', which would cause false positives."
+    }
+  ]
+}

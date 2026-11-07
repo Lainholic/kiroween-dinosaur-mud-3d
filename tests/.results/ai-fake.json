@@ -1,0 +1,408 @@
+{
+  "suite": "ai-fake",
+  "env": {
+    "browser": "msedge.exe",
+    "viewport": "1280x800"
+  },
+  "cases": [
+    {
+      "feature": "늦은 AI 응답 차단",
+      "name": "1. lobby reply after moving to lab: no narration in lab",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "늦은 AI 응답 차단",
+      "name": "1. lobby reply after moving to lab: no new log lines",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "늦은 AI 응답 차단",
+      "name": "1. lobby reply after moving to lab: light/fog/intensity/anim unchanged",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "늦은 AI 응답 차단",
+      "name": "2. reply after restart is discarded (no log)",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "늦은 AI 응답 차단",
+      "name": "2. reply after restart: no fx change",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "늦은 AI 응답 차단",
+      "name": "2. setup: player reached game over",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "늦은 AI 응답 차단",
+      "name": "2. reply after game over is discarded (no log)",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "늦은 AI 응답 차단",
+      "name": "2. reply after game over: no fx change",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "늦은 AI 응답 차단",
+      "name": "2. setup: player won",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "늦은 AI 응답 차단",
+      "name": "2. reply after win is discarded (no log)",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "늦은 AI 응답 차단",
+      "name": "2. reply after win: no fx change",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "늦은 AI 응답 차단",
+      "name": "3. reverse-order replies: only newer applied",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "늦은 AI 응답 차단",
+      "name": "3. in-order replies: both applied",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "네트워크 실패 처리",
+      "name": "4. HTTP 500 via look: base text unchanged, no extra AI text",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "네트워크 실패 처리",
+      "name": "4. HTTP 500 via look: room and exits unchanged",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "네트워크 실패 처리",
+      "name": "4. HTTP 500 via look: next command (status) works",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "네트워크 실패 처리",
+      "name": "4. HTTP 500 via text: base text unchanged, no extra AI text",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "네트워크 실패 처리",
+      "name": "4. HTTP 500 via text: room and exits unchanged",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "네트워크 실패 처리",
+      "name": "4. HTTP 500 via text: next command (status) works",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "네트워크 실패 처리",
+      "name": "4. fetch throws via look: base text unchanged, no extra AI text",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "네트워크 실패 처리",
+      "name": "4. fetch throws via look: room and exits unchanged",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "네트워크 실패 처리",
+      "name": "4. fetch throws via look: next command (status) works",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "네트워크 실패 처리",
+      "name": "4. fetch throws via text: base text unchanged, no extra AI text",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "네트워크 실패 처리",
+      "name": "4. fetch throws via text: room and exits unchanged",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "네트워크 실패 처리",
+      "name": "4. fetch throws via text: next command (status) works",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "네트워크 실패 처리",
+      "name": "4. invalid JSON body via look: base text unchanged, no extra AI text",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "네트워크 실패 처리",
+      "name": "4. invalid JSON body via look: room and exits unchanged",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "네트워크 실패 처리",
+      "name": "4. invalid JSON body via look: next command (status) works",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "네트워크 실패 처리",
+      "name": "4. invalid JSON body via text: base text unchanged, no extra AI text",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "네트워크 실패 처리",
+      "name": "4. invalid JSON body via text: room and exits unchanged",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "네트워크 실패 처리",
+      "name": "4. invalid JSON body via text: next command (status) works",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "네트워크 실패 처리",
+      "name": "4. empty candidates via look: base text unchanged, no extra AI text",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "네트워크 실패 처리",
+      "name": "4. empty candidates via look: room and exits unchanged",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "네트워크 실패 처리",
+      "name": "4. empty candidates via look: next command (status) works",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "네트워크 실패 처리",
+      "name": "4. empty candidates via text: base text unchanged, no extra AI text",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "네트워크 실패 처리",
+      "name": "4. empty candidates via text: room and exits unchanged",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "네트워크 실패 처리",
+      "name": "4. empty candidates via text: next command (status) works",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "네트워크 실패 처리",
+      "name": "4. no response until timeout via look: base text unchanged, no extra AI text",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "네트워크 실패 처리",
+      "name": "4. no response until timeout via look: room and exits unchanged",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "네트워크 실패 처리",
+      "name": "4. no response until timeout via look: abort fired on fake signal",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "네트워크 실패 처리",
+      "name": "4. no response until timeout via look: next command (status) works",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "네트워크 실패 처리",
+      "name": "4. no response until timeout via text: base text unchanged, no extra AI text",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "네트워크 실패 처리",
+      "name": "4. no response until timeout via text: room and exits unchanged",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "네트워크 실패 처리",
+      "name": "4. no response until timeout via text: abort fired on fake signal",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "네트워크 실패 처리",
+      "name": "4. no response until timeout via text: next command (status) works",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "네트워크 실패 처리",
+      "name": "4. world reply with unparsable text: offline hint, state intact",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "네트워크 실패 처리",
+      "name": "4. failures produced 0 uncaught exceptions/console errors",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "기본 정보 우선 출력",
+      "name": "5. look with key: header, THREAT, Exits logged while reply pending",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "기본 정보 우선 출력",
+      "name": "5. AI text appended after base text on resolve",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "네트워크 실패 처리",
+      "name": "6. no key: 0 fetch calls for look/free text/move",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "늦은 AI 응답 차단",
+      "name": "7. scenario 1 identical on second run",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "늦은 AI 응답 차단",
+      "name": "7. scenario 3 identical on second run",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "늦은 AI 응답 차단",
+      "name": "8. default timeout constant is 10000",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "늦은 AI 응답 차단",
+      "name": "8. timeout restored to default after tests (no abort at 400ms)",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "네트워크 실패 처리",
+      "name": "network: every fetch was intercepted by the fake, URLs are the Gemini endpoint only",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "네트워크 실패 처리",
+      "name": "network: only the fake key was sent",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    },
+    {
+      "feature": "네트워크 실패 처리",
+      "name": "overall: 0 console errors/uncaught exceptions",
+      "status": "pass",
+      "detail": "ok",
+      "kind": "fake"
+    }
+  ]
+}

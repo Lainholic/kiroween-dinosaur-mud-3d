@@ -1,0 +1,511 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "1.1 저장소 경로 관계 확인": [
+      {
+        "executionId": "93fd4666-d890-4a92-a8bc-50c5e564cdf1",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794030189322
+      },
+      {
+        "executionId": "93fd4666-d890-4a92-a8bc-50c5e564cdf1",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794030195061
+      },
+      {
+        "executionId": "93fd4666-d890-4a92-a8bc-50c5e564cdf1",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794030307342
+      }
+    ],
+    "1.2 Working_Tree_Snapshot 생성": [
+      {
+        "executionId": "93fd4666-d890-4a92-a8bc-50c5e564cdf1",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794030189490
+      },
+      {
+        "executionId": "93fd4666-d890-4a92-a8bc-50c5e564cdf1",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794030307397
+      },
+      {
+        "executionId": "93fd4666-d890-4a92-a8bc-50c5e564cdf1",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794030356839
+      }
+    ],
+    "1.3 스펙 문서와 steering 읽기 확인": [
+      {
+        "executionId": "93fd4666-d890-4a92-a8bc-50c5e564cdf1",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794030189536
+      },
+      {
+        "executionId": "93fd4666-d890-4a92-a8bc-50c5e564cdf1",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794030356889
+      },
+      {
+        "executionId": "93fd4666-d890-4a92-a8bc-50c5e564cdf1",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794030652606
+      }
+    ],
+    "2.1 기존 스펙 문서에 새 방향 반영": [
+      {
+        "executionId": "93fd4666-d890-4a92-a8bc-50c5e564cdf1",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794030189577
+      },
+      {
+        "executionId": "93fd4666-d890-4a92-a8bc-50c5e564cdf1",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794030652815
+      },
+      {
+        "executionId": "0b912280-e6d2-4b1d-ab91-c165d25f3c87",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794031003615
+      },
+      {
+        "executionId": "1c7edba5-181c-431d-94d3-190f91c34985",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794031419389
+      },
+      {
+        "executionId": "9510abea-9bab-4dd3-b08f-9500ea5d0374",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794031533094
+      },
+      {
+        "executionId": "9510abea-9bab-4dd3-b08f-9500ea5d0374",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794031643381
+      }
+    ],
+    "2.2 기존 `tasks.md`(`.kiro/specs/tasks.md`) 정리와 스펙 파일 이름 변경": [
+      {
+        "executionId": "93fd4666-d890-4a92-a8bc-50c5e564cdf1",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794030189623
+      },
+      {
+        "executionId": "813cb4f6-5cee-4966-a8a0-48614296ff53",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794031295766
+      },
+      {
+        "executionId": "1c7edba5-181c-431d-94d3-190f91c34985",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794031419300
+      }
+    ],
+    "2.3 README 갱신": [
+      {
+        "executionId": "93fd4666-d890-4a92-a8bc-50c5e564cdf1",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794030189648
+      },
+      {
+        "executionId": "9510abea-9bab-4dd3-b08f-9500ea5d0374",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794031454629
+      },
+      {
+        "executionId": "9510abea-9bab-4dd3-b08f-9500ea5d0374",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794031533540
+      }
+    ],
+    "3.1 `BRAND` 상수 도입과 화면 문자열 교체": [
+      {
+        "executionId": "93fd4666-d890-4a92-a8bc-50c5e564cdf1",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794030189678
+      },
+      {
+        "executionId": "0b912280-e6d2-4b1d-ab91-c165d25f3c87",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794031004404
+      },
+      {
+        "executionId": "813cb4f6-5cee-4966-a8a0-48614296ff53",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794031038389
+      },
+      {
+        "executionId": "813cb4f6-5cee-4966-a8a0-48614296ff53",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794031135286
+      }
+    ],
+    "3.2 `classifyCommand` 분리와 카드 명령 정규식 수정": [
+      {
+        "executionId": "93fd4666-d890-4a92-a8bc-50c5e564cdf1",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794030189707
+      },
+      {
+        "executionId": "813cb4f6-5cee-4966-a8a0-48614296ff53",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794031136021
+      },
+      {
+        "executionId": "813cb4f6-5cee-4966-a8a0-48614296ff53",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794031237521
+      }
+    ],
+    "3.3 프롬프트, 주석, 로컬 저장소 키 정리": [
+      {
+        "executionId": "93fd4666-d890-4a92-a8bc-50c5e564cdf1",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794030189754
+      },
+      {
+        "executionId": "813cb4f6-5cee-4966-a8a0-48614296ff53",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794031238504
+      },
+      {
+        "executionId": "813cb4f6-5cee-4966-a8a0-48614296ff53",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794031294839
+      }
+    ],
+    "4.1 버그 1~4 현재 코드 재현 확인": [
+      {
+        "executionId": "93fd4666-d890-4a92-a8bc-50c5e564cdf1",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794030189782
+      },
+      {
+        "executionId": "6abdb875-cc9a-42de-87fa-a61d41ff3940",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794031835515
+      },
+      {
+        "executionId": "6abdb875-cc9a-42de-87fa-a61d41ff3940",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794031947035
+      }
+    ],
+    "4.2 테이저 스턴 판정 최소 수정": [
+      {
+        "executionId": "93fd4666-d890-4a92-a8bc-50c5e564cdf1",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794030189810
+      },
+      {
+        "executionId": "6abdb875-cc9a-42de-87fa-a61d41ff3940",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794031947596
+      },
+      {
+        "executionId": "6abdb875-cc9a-42de-87fa-a61d41ff3940",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794032489991
+      }
+    ],
+    "4.3 AI 문맥 토큰과 응답 적용 판정": [
+      {
+        "executionId": "93fd4666-d890-4a92-a8bc-50c5e564cdf1",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794030189839
+      },
+      {
+        "executionId": "6abdb875-cc9a-42de-87fa-a61d41ff3940",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794032490806
+      },
+      {
+        "executionId": "01eb61c1-118e-4161-bcba-c233f48dc86c",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794032602027
+      },
+      {
+        "executionId": "01eb61c1-118e-4161-bcba-c233f48dc86c",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794032664098
+      }
+    ],
+    "4.4 기본 정보 우선 출력과 타임아웃 정리": [
+      {
+        "executionId": "93fd4666-d890-4a92-a8bc-50c5e564cdf1",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794030189868
+      },
+      {
+        "executionId": "01eb61c1-118e-4161-bcba-c233f48dc86c",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794032664927
+      },
+      {
+        "executionId": "01eb61c1-118e-4161-bcba-c233f48dc86c",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794032753816
+      }
+    ],
+    "5.1 테스트 인프라와 `window.__mud` 훅 확장": [
+      {
+        "executionId": "93fd4666-d890-4a92-a8bc-50c5e564cdf1",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794030189895
+      },
+      {
+        "executionId": "01eb61c1-118e-4161-bcba-c233f48dc86c",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794032754559
+      },
+      {
+        "executionId": "01eb61c1-118e-4161-bcba-c233f48dc86c",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794033033850
+      }
+    ],
+    "5.2 이동, 자원, 승리, 재시작 시나리오": [
+      {
+        "executionId": "93fd4666-d890-4a92-a8bc-50c5e564cdf1",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794030189926
+      },
+      {
+        "executionId": "01eb61c1-118e-4161-bcba-c233f48dc86c",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794033043704
+      },
+      {
+        "executionId": "01eb61c1-118e-4161-bcba-c233f48dc86c",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794033303144
+      }
+    ],
+    "5.3 이름, 콘솔 오류, 실패 출력 검사": [
+      {
+        "executionId": "93fd4666-d890-4a92-a8bc-50c5e564cdf1",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794030189973
+      },
+      {
+        "executionId": "01eb61c1-118e-4161-bcba-c233f48dc86c",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794033302434
+      },
+      {
+        "executionId": "01eb61c1-118e-4161-bcba-c233f48dc86c",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794033377897
+      }
+    ],
+    "5.4 스턴 케이스": [
+      {
+        "executionId": "93fd4666-d890-4a92-a8bc-50c5e564cdf1",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794030190001
+      },
+      {
+        "executionId": "01eb61c1-118e-4161-bcba-c233f48dc86c",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794033376888
+      },
+      {
+        "executionId": "01eb61c1-118e-4161-bcba-c233f48dc86c",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794033534913
+      }
+    ],
+    "5.5 가짜 fetch AI 시나리오": [
+      {
+        "executionId": "93fd4666-d890-4a92-a8bc-50c5e564cdf1",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794030190041
+      },
+      {
+        "executionId": "01eb61c1-118e-4161-bcba-c233f48dc86c",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794033380100
+      },
+      {
+        "executionId": "01eb61c1-118e-4161-bcba-c233f48dc86c",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794033535897
+      }
+    ],
+    "5.6 뷰포트 레이아웃 검사": [
+      {
+        "executionId": "93fd4666-d890-4a92-a8bc-50c5e564cdf1",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794030190077
+      },
+      {
+        "executionId": "01eb61c1-118e-4161-bcba-c233f48dc86c",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794033379081
+      },
+      {
+        "executionId": "01eb61c1-118e-4161-bcba-c233f48dc86c",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794033537090
+      }
+    ],
+    "6.1 검사기와 데이터 파일 구현": [
+      {
+        "executionId": "93fd4666-d890-4a92-a8bc-50c5e564cdf1",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794030190106
+      },
+      {
+        "executionId": "6abdb875-cc9a-42de-87fa-a61d41ff3940",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794031773004
+      },
+      {
+        "executionId": "6abdb875-cc9a-42de-87fa-a61d41ff3940",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794031830998
+      }
+    ],
+    "6.3 잔존 명칭 제거와 참조 무결성 확인": [
+      {
+        "executionId": "93fd4666-d890-4a92-a8bc-50c5e564cdf1",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794030190150
+      },
+      {
+        "executionId": "01eb61c1-118e-4161-bcba-c233f48dc86c",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794033542814
+      },
+      {
+        "executionId": "01eb61c1-118e-4161-bcba-c233f48dc86c",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794033886072
+      }
+    ],
+    "7.1 키 가림 모듈과 실제 호출 스크립트 정리": [
+      {
+        "executionId": "93fd4666-d890-4a92-a8bc-50c5e564cdf1",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794030190181
+      },
+      {
+        "executionId": "01eb61c1-118e-4161-bcba-c233f48dc86c",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794032755683
+      },
+      {
+        "executionId": "01eb61c1-118e-4161-bcba-c233f48dc86c",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794033034965
+      }
+    ],
+    "8.1 보고서 생성기 구현": [
+      {
+        "executionId": "93fd4666-d890-4a92-a8bc-50c5e564cdf1",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794030190214
+      },
+      {
+        "executionId": "01eb61c1-118e-4161-bcba-c233f48dc86c",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794032760214
+      },
+      {
+        "executionId": "01eb61c1-118e-4161-bcba-c233f48dc86c",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794033036160
+      }
+    ],
+    "8.3 전체 검증 실행과 보고서 생성": [
+      {
+        "executionId": "93fd4666-d890-4a92-a8bc-50c5e564cdf1",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794030190244
+      },
+      {
+        "executionId": "01eb61c1-118e-4161-bcba-c233f48dc86c",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794033885227
+      },
+      {
+        "executionId": "01eb61c1-118e-4161-bcba-c233f48dc86c",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794034303482
+      }
+    ],
+    "9. Final checkpoint - Ensure all tests pass": [
+      {
+        "executionId": "93fd4666-d890-4a92-a8bc-50c5e564cdf1",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794030190272
+      },
+      {
+        "executionId": "01eb61c1-118e-4161-bcba-c233f48dc86c",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794034303395
+      },
+      {
+        "executionId": "01eb61c1-118e-4161-bcba-c233f48dc86c",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794036264364
+      }
+    ],
+    "1. 사전 조사": [
+      {
+        "executionId": "93fd4666-d890-4a92-a8bc-50c5e564cdf1",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794030652656
+      }
+    ],
+    "3. 이름 교체와 BRAND 정의": [
+      {
+        "executionId": "813cb4f6-5cee-4966-a8a0-48614296ff53",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794031294880
+      }
+    ],
+    "2. 스펙 문서 갱신 (구현 전)": [
+      {
+        "executionId": "9510abea-9bab-4dd3-b08f-9500ea5d0374",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794031643424
+      }
+    ],
+    "4. 버그 재현 확인과 최소 수정": [
+      {
+        "executionId": "01eb61c1-118e-4161-bcba-c233f48dc86c",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794032753867
+      }
+    ],
+    "7. Live_Check": [
+      {
+        "executionId": "01eb61c1-118e-4161-bcba-c233f48dc86c",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794033034997
+      }
+    ],
+    "5. 테스트 확장": [
+      {
+        "executionId": "01eb61c1-118e-4161-bcba-c233f48dc86c",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794033537138
+      }
+    ],
+    "6. 옛 명칭 검사": [
+      {
+        "executionId": "01eb61c1-118e-4161-bcba-c233f48dc86c",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794033886105
+      }
+    ],
+    "8. 검증 보고서": [
+      {
+        "executionId": "01eb61c1-118e-4161-bcba-c233f48dc86c",
+        "chatSessionId": "sess_7295062b-02fc-40bb-be22-a19a8dc398f4",
+        "timestamp": 1794034303523
+      }
+    ]
+  }
+}

@@ -2,7 +2,7 @@
 (키로가 직접 구현할 수 있도록 작성된 Gemini API ↔ Three.js 실시간 월드 엔진 가이드)
 
 ## 1. 목적 (Goal)
-Kiro는 `src/apps/textmud-3d/index.html` 파일에 가짜 `if-else` 눈속임 코드를 걷어내고, **유저가 친 자유 텍스트를 실제 Google Gemini API로 전송하여 실시간 3D 공간 제어 JSON을 받아 Three.js를 실시간으로 변형하는 진짜 월드 엔진 파이프라인**을 구현한다.
+Kiro는 `index.html` 파일에 가짜 `if-else` 눈속임 코드를 걷어내고, **유저가 친 자유 텍스트를 실제 Google Gemini API로 전송하여 실시간 3D 공간 제어 JSON을 받아 Three.js를 실시간으로 변형하는 진짜 월드 엔진 파이프라인**을 구현한다.
 
 ---
 
@@ -47,7 +47,7 @@ Kiro는 아래의 JSON 페이로드를 조립하여 `fetch`로 전송해야 한�
 ## 3. Kiro가 작성해야 할 3개 핵심 자바스크립트 함수
 
 ### [함수 1] `callGeminiWorldEngine(prompt, context)`
-* **위치**: `src/apps/textmud-3d/index.html` 스크립트 영역
+* **위치**: `index.html` 스크립트 영역
 * **역할**: 
   1. `localStorage.getItem('GEMINI_API_KEY')` 또는 입력창에서 키를 읽는다.
   2. 키가 없거나 호출이 실패하면 즉시 `getLocalFallbackWorld(prompt)`를 호출해 크래시 없이 반응한다.
@@ -55,7 +55,7 @@ Kiro는 아래의 JSON 페이로드를 조립하여 `fetch`로 전송해야 한�
   4. 파싱된 객체 `{ narrativeText, scene3D }`를 반환한다.
 
 ### [함수 2] `applyWorldMutation(worldData)`
-* **위치**: `src/apps/textmud-3d/index.html` 스크립트 영역
+* **위치**: `index.html` 스크립트 영역
 * **역할**:
   1. `worldData.narrativeText`를 좌측 터미널의 `appendTeletype()`으로 타이핑 출력한다.
   2. `worldData.scene3D.characterAnimation`을 우측 Three.js의 `currentAnim`에 즉시 반영한다 (`IDLE`, `WALK`, `INTERACT`, `CAST`).
@@ -77,7 +77,7 @@ Kiro는 아래의 JSON 페이로드를 조립하여 `fetch`로 전송해야 한�
 환님께서 Kiro에게 그대로 복사해서 전달할 프롬프트:
 
 ```text
-Kiro, implement the real Gemini World Engine into `src/apps/textmud-3d/index.html` following `.kiro/specs/textmud-3d/gemini-world-engine.md`.
+Kiro, implement the real Gemini World Engine into `index.html` following `.kiro/specs/gemini-world-engine.md`.
 Specifically:
 1. Replace the hardcoded `if (cmd.includes('flame'))` block with an async `callGeminiWorldEngine(cmdText)` pipeline.
 2. Send user actions to Gemini's `generateContent` endpoint using `response_mime_type: "application/json"`.

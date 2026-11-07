@@ -1,0 +1,99 @@
+{
+  "suite": "legacy-scan",
+  "scannedCount": 41,
+  "hits": [],
+  "allowed": [
+    {
+      "path": "tests/legacy-terms.json",
+      "line": 4,
+      "term": "Jurassic Park"
+    },
+    {
+      "path": "tests/legacy-terms.json",
+      "line": 4,
+      "term": "Jurassic"
+    },
+    {
+      "path": "tests/legacy-terms.json",
+      "line": 5,
+      "term": "Jurassic"
+    },
+    {
+      "path": "tests/legacy-terms.json",
+      "line": 6,
+      "term": "Isla Nublar"
+    },
+    {
+      "path": "tests/legacy-terms.json",
+      "line": 6,
+      "term": "Nublar"
+    },
+    {
+      "path": "tests/legacy-terms.json",
+      "line": 7,
+      "term": "Nublar"
+    },
+    {
+      "path": "tests/legacy-terms.json",
+      "line": 8,
+      "term": "InGen"
+    },
+    {
+      "path": "tests/legacy-terms.json",
+      "line": 9,
+      "term": "ingen_admin"
+    },
+    {
+      "path": "tests/legacy-terms.json",
+      "line": 10,
+      "term": "It is a UNIX system"
+    },
+    {
+      "path": "tests/legacy-terms.json",
+      "line": 11,
+      "term": "You know this"
+    },
+    {
+      "path": "tests/legacy-terms.json",
+      "line": 12,
+      "term": "Hammond"
+    },
+    {
+      "path": "tests/legacy-terms.json",
+      "line": 13,
+      "term": "Malcolm"
+    },
+    {
+      "path": "tests/legacy-terms.json",
+      "line": 14,
+      "term": "Nedry"
+    },
+    {
+      "path": "tests/legacy-terms.json",
+      "line": 15,
+      "term": "Sattler"
+    },
+    {
+      "path": "tests/legacy-terms.json",
+      "line": 16,
+      "term": "Isla Sorna"
+    },
+    {
+      "path": "tests/legacy-terms.json",
+      "line": 17,
+      "term": "spared no expense"
+    },
+    {
+      "path": "tests/legacy-terms.json",
+      "line": 18,
+      "term": "clever girl"
+    },
+    {
+      "path": "tests/legacy-terms.json",
+      "line": 19,
+      "term": "life finds a way"
+    }
+  ],
+  "unresolved": 0,
+  "binarySkipped": []
+}

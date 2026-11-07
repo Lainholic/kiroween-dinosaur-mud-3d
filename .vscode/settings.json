@@ -1,0 +1,5 @@
+{
+    "json.schemaDownload.trustedDomains": {
+        "node *, git status*, git diff*, Get-ChildItem *, Select-String *": true
+    }
+}

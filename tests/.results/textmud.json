@@ -1,0 +1,921 @@
+{
+  "suite": "textmud",
+  "env": {
+    "browser": "msedge.exe",
+    "viewport": "1280x800"
+  },
+  "cases": [
+    {
+      "feature": null,
+      "name": "page booted (Three.js loaded, test hook present)",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "fresh state: 100 HP, 3 shells, 2 flares, 3 taser charges, no recovery",
+      "status": "pass",
+      "detail": "{\"room\":\"lobby\",\"hp\":100,\"shells\":3,\"flares\":2,\"taserCharges\":3,\"hasCard\":false,\"raptorHp\":45,\"raptorsAlive\":true,\"over\":false,\"won\":false,\"shotsFired\":0,\"shocksUsed\":0,\"stunRecovery\":false}"
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "shock 1: pack 45->31, no counter-attack, HP 100, charges 2, stun recovery set",
+      "status": "pass",
+      "detail": "{\"room\":\"lobby\",\"hp\":100,\"shells\":3,\"flares\":2,\"taserCharges\":2,\"hasCard\":false,\"raptorHp\":31,\"raptorsAlive\":true,\"over\":false,\"won\":false,\"shotsFired\":0,\"shocksUsed\":1,\"stunRecovery\":true}"
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "shock 1: raptor stun animation active",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "shock 1: log says stunned",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "shock 2 (recovery): damage applies, pack 31->17, counter-attack 10, HP 90, no stun",
+      "status": "pass",
+      "detail": "{\"room\":\"lobby\",\"hp\":90,\"shells\":3,\"flares\":2,\"taserCharges\":1,\"hasCard\":false,\"raptorHp\":17,\"raptorsAlive\":true,\"over\":false,\"won\":false,\"shotsFired\":0,\"shocksUsed\":2,\"stunRecovery\":false}"
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "shock 2: raptors lunge, not stun",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "shock 3: stun again, pack 17->3, HP stays 90, charges 0",
+      "status": "pass",
+      "detail": "{\"room\":\"lobby\",\"hp\":90,\"shells\":3,\"flares\":2,\"taserCharges\":0,\"hasCard\":false,\"raptorHp\":3,\"raptorsAlive\":true,\"over\":false,\"won\":false,\"shotsFired\":0,\"shocksUsed\":3,\"stunRecovery\":true}"
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "shock 4 on empty taser: nothing changes (no damage, no counter, no recovery change)",
+      "status": "pass",
+      "detail": "{\"room\":\"lobby\",\"hp\":90,\"shells\":3,\"flares\":2,\"taserCharges\":0,\"hasCard\":false,\"raptorHp\":3,\"raptorsAlive\":true,\"over\":false,\"won\":false,\"shotsFired\":0,\"shocksUsed\":3,\"stunRecovery\":true}"
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "empty taser message shown",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "badge shows TASER 0",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "status reports taser charges",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "inventory reports taser charges",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "shock then flare: flare blinds (no counter), recovery cleared, flares 1, HP 100",
+      "status": "pass",
+      "detail": "{\"room\":\"lobby\",\"hp\":100,\"shells\":3,\"flares\":1,\"taserCharges\":2,\"hasCard\":false,\"raptorHp\":31,\"raptorsAlive\":true,\"over\":false,\"won\":false,\"shotsFired\":0,\"shocksUsed\":1,\"stunRecovery\":false}"
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "shock after flare stuns again (no counter)",
+      "status": "pass",
+      "detail": "{\"room\":\"lobby\",\"hp\":100,\"shells\":3,\"flares\":1,\"taserCharges\":1,\"hasCard\":false,\"raptorHp\":17,\"raptorsAlive\":true,\"over\":false,\"won\":false,\"shotsFired\":0,\"shocksUsed\":2,\"stunRecovery\":true}"
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "shoot after stun: pack 17->0 lethal, no counter",
+      "status": "pass",
+      "detail": "{\"room\":\"lobby\",\"hp\":100,\"shells\":2,\"flares\":1,\"taserCharges\":1,\"hasCard\":false,\"raptorHp\":0,\"raptorsAlive\":false,\"over\":false,\"won\":false,\"shotsFired\":1,\"shocksUsed\":2,\"stunRecovery\":false}"
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "blast alias: shell used, counter-attack 9, no stun",
+      "status": "pass",
+      "detail": "{\"room\":\"lobby\",\"hp\":91,\"shells\":2,\"flares\":2,\"taserCharges\":3,\"hasCard\":false,\"raptorHp\":25,\"raptorsAlive\":true,\"over\":false,\"won\":false,\"shotsFired\":1,\"shocksUsed\":0,\"stunRecovery\":false}"
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "shotgun: 3 shells then *click* (no 4th effect)",
+      "status": "pass",
+      "detail": "{\"room\":\"lobby\",\"hp\":97,\"shells\":0,\"flares\":2,\"taserCharges\":3,\"hasCard\":false,\"raptorHp\":940,\"raptorsAlive\":true,\"over\":false,\"won\":false,\"shotsFired\":3,\"shocksUsed\":0,\"stunRecovery\":false}"
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "lethal shock: pack dead, no stun, no counter, HP 90",
+      "status": "pass",
+      "detail": "{\"room\":\"lobby\",\"hp\":90,\"shells\":2,\"flares\":2,\"taserCharges\":2,\"hasCard\":false,\"raptorHp\":0,\"raptorsAlive\":false,\"over\":false,\"won\":false,\"shotsFired\":1,\"shocksUsed\":1,\"stunRecovery\":false}"
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "flare after pack dead: nothing to use it on, flare not consumed",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "game over: HP 0, over=true",
+      "status": "pass",
+      "detail": "{\"room\":\"lobby\",\"hp\":0,\"shells\":3,\"flares\":2,\"taserCharges\":1,\"hasCard\":false,\"raptorHp\":17,\"raptorsAlive\":true,\"over\":true,\"won\":false,\"shotsFired\":0,\"shocksUsed\":2,\"stunRecovery\":false}"
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "after game over, combat/move commands are blocked",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "restart: full reset (HP, ammo, taser, recovery, room, raptors, flags)",
+      "status": "pass",
+      "detail": "{\"room\":\"lobby\",\"hp\":100,\"shells\":3,\"flares\":2,\"taserCharges\":3,\"hasCard\":false,\"raptorHp\":45,\"raptorsAlive\":true,\"over\":false,\"won\":false,\"shotsFired\":0,\"shocksUsed\":0,\"stunRecovery\":false}"
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "restart: badge shows TASER 3 and HP 100",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "feature": "방 이동",
+      "name": "pack cleared with two shells",
+      "status": "pass",
+      "detail": "{\"room\":\"lobby\",\"hp\":92,\"shells\":1,\"flares\":2,\"taserCharges\":3,\"hasCard\":false,\"raptorHp\":0,\"raptorsAlive\":false,\"over\":false,\"won\":false,\"shotsFired\":2,\"shocksUsed\":0,\"stunRecovery\":false}"
+    },
+    {
+      "feature": "방 이동",
+      "name": "lobby->control: \"north\" -> control, only that 3D group visible",
+      "status": "pass",
+      "detail": "{\"r\":\"control\",\"g\":{\"lobby\":false,\"lab\":false,\"control\":true,\"pen\":false,\"generator\":false}}"
+    },
+    {
+      "feature": "방 이동",
+      "name": "control->generator: \"east\" -> generator, only that 3D group visible",
+      "status": "pass",
+      "detail": "{\"r\":\"generator\",\"g\":{\"lobby\":false,\"lab\":false,\"control\":false,\"pen\":false,\"generator\":true}}"
+    },
+    {
+      "feature": "방 이동",
+      "name": "generator without card: access denied, not won",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "feature": "방 이동",
+      "name": "generator->control (return): \"west\" -> control, only that 3D group visible",
+      "status": "pass",
+      "detail": "{\"r\":\"control\",\"g\":{\"lobby\":false,\"lab\":false,\"control\":true,\"pen\":false,\"generator\":false}}"
+    },
+    {
+      "feature": "방 이동",
+      "name": "control->lobby (return): \"south\" -> lobby, only that 3D group visible",
+      "status": "pass",
+      "detail": "{\"r\":\"lobby\",\"g\":{\"lobby\":true,\"lab\":false,\"control\":false,\"pen\":false,\"generator\":false}}"
+    },
+    {
+      "feature": "방 이동",
+      "name": "lobby->lab: \"east\" -> lab, only that 3D group visible",
+      "status": "pass",
+      "detail": "{\"r\":\"lab\",\"g\":{\"lobby\":false,\"lab\":true,\"control\":false,\"pen\":false,\"generator\":false}}"
+    },
+    {
+      "feature": "방 이동",
+      "name": "card taken in lab",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "feature": "방 이동",
+      "name": "badge shows CARD",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "feature": "방 이동",
+      "name": "lab->lobby (return): \"west\" -> lobby, only that 3D group visible",
+      "status": "pass",
+      "detail": "{\"r\":\"lobby\",\"g\":{\"lobby\":true,\"lab\":false,\"control\":false,\"pen\":false,\"generator\":false}}"
+    },
+    {
+      "feature": "방 이동",
+      "name": "lobby->pen: \"west\" -> pen, only that 3D group visible",
+      "status": "pass",
+      "detail": "{\"r\":\"pen\",\"g\":{\"lobby\":false,\"lab\":false,\"control\":false,\"pen\":true,\"generator\":false}}"
+    },
+    {
+      "feature": "방 이동",
+      "name": "pen->lobby (return): \"east\" -> lobby, only that 3D group visible",
+      "status": "pass",
+      "detail": "{\"r\":\"lobby\",\"g\":{\"lobby\":true,\"lab\":false,\"control\":false,\"pen\":false,\"generator\":false}}"
+    },
+    {
+      "feature": "방 이동",
+      "name": "pen has no further exits (west blocked)",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "feature": "방 이동",
+      "name": "victory path B: restore power at generator with card",
+      "status": "pass",
+      "detail": "{\"room\":\"generator\",\"hp\":92,\"shells\":1,\"flares\":2,\"taserCharges\":3,\"hasCard\":true,\"raptorHp\":0,\"raptorsAlive\":false,\"over\":false,\"won\":true,\"shotsFired\":2,\"shocksUsed\":0,\"stunRecovery\":false}"
+    },
+    {
+      "feature": "방 이동",
+      "name": "take card outside the lab is refused",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "feature": "방 이동",
+      "name": "victory path A: restore power at control room with card (existing path preserved)",
+      "status": "pass",
+      "detail": "{\"room\":\"control\",\"hp\":92,\"shells\":1,\"flares\":2,\"taserCharges\":3,\"hasCard\":true,\"raptorHp\":0,\"raptorsAlive\":false,\"over\":false,\"won\":true,\"shotsFired\":2,\"shocksUsed\":0,\"stunRecovery\":false}"
+    },
+    {
+      "feature": "방 이동",
+      "name": "after victory movement is blocked until restart",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "feature": "방 이동",
+      "name": "leaving lobby with live pack costs 8-17 HP",
+      "status": "pass",
+      "detail": "{\"room\":\"control\",\"hp\":92,\"shells\":3,\"flares\":2,\"taserCharges\":3,\"hasCard\":false,\"raptorHp\":45,\"raptorsAlive\":true,\"over\":false,\"won\":false,\"shotsFired\":0,\"shocksUsed\":0,\"stunRecovery\":false}"
+    },
+    {
+      "feature": null,
+      "name": "key set: look prints description, threat and exits BEFORE any AI reply",
+      "status": "pass",
+      "detail": "{\"pend\":1}"
+    },
+    {
+      "feature": null,
+      "name": "fake key header was used for the (fake) request, nothing real was sent",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "feature": null,
+      "name": "AI narration is appended after base info",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "feature": null,
+      "name": "AI HTTP failure: base info remains, controls still work",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "feature": null,
+      "name": "AI never answers: inventory still instant",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "feature": null,
+      "name": "late lobby reply is NOT narrated in the lab",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "feature": null,
+      "name": "late lobby reply did NOT change lab light/fog/camera",
+      "status": "pass",
+      "detail": "{\"groups\":{\"lobby\":false,\"lab\":true,\"control\":false,\"pen\":false,\"generator\":false},\"hudLight\":\"#00ff88\",\"currentAnim\":\"WALK\",\"targetFogDensity\":0.05,\"targetLightIntensity\":2.2,\"cameraShakeIntensity\":0.6,\"flashIntensity\":6,\"raptorMode\":\"dead\",\"gunKick\":1,\"muzzleVisible\":true,\"strobeTimer\":0.09430000000074505,\"arcIntensity\":3.5,\"corpses\":[{\"rotZ\":0,\"y\":0,\"puddle\":true,\"puddleVisible\":false},{\"rotZ\":0,\"y\":0,\"puddle\":true,\"puddleVisible\":false},{\"rotZ\":0,\"y\":0,\"puddle\":true,\"puddleVisible\":false}]}"
+    },
+    {
+      "feature": null,
+      "name": "late \"look\" narration from the previous room is dropped",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "feature": null,
+      "name": "current room narration still applies",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "feature": null,
+      "name": "reply requested before restart is dropped",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "feature": null,
+      "name": "player reached game over",
+      "status": "pass",
+      "detail": "{\"room\":\"lobby\",\"hp\":0,\"shells\":3,\"flares\":2,\"taserCharges\":1,\"hasCard\":false,\"raptorHp\":17,\"raptorsAlive\":true,\"over\":true,\"won\":false,\"shotsFired\":0,\"shocksUsed\":2,\"stunRecovery\":false}"
+    },
+    {
+      "feature": null,
+      "name": "reply arriving after game over is dropped",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "feature": null,
+      "name": "reverse order: newer reply applied, older late reply dropped",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "feature": null,
+      "name": "in-order replies both apply",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "feature": null,
+      "name": "no key: no network request, unknown-command hint shown",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "feature": "방 이동",
+      "name": "edge lobby -north-> control",
+      "status": "pass",
+      "detail": "\"control\""
+    },
+    {
+      "feature": "방 이동",
+      "name": "return edge control -south-> lobby",
+      "status": "pass",
+      "detail": "\"lobby\""
+    },
+    {
+      "feature": "방 이동",
+      "name": "edge lobby -east-> lab",
+      "status": "pass",
+      "detail": "\"lab\""
+    },
+    {
+      "feature": "방 이동",
+      "name": "return edge lab -west-> lobby",
+      "status": "pass",
+      "detail": "\"lobby\""
+    },
+    {
+      "feature": "방 이동",
+      "name": "edge lobby -west-> pen",
+      "status": "pass",
+      "detail": "\"pen\""
+    },
+    {
+      "feature": "방 이동",
+      "name": "return edge pen -east-> lobby",
+      "status": "pass",
+      "detail": "\"lobby\""
+    },
+    {
+      "feature": "방 이동",
+      "name": "edge control -east-> generator",
+      "status": "pass",
+      "detail": "\"generator\""
+    },
+    {
+      "feature": "방 이동",
+      "name": "return edge generator -west-> control",
+      "status": "pass",
+      "detail": "\"control\""
+    },
+    {
+      "feature": "방 이동",
+      "name": "return edge control -south-> lobby",
+      "status": "pass",
+      "detail": "\"lobby\""
+    },
+    {
+      "feature": "방 이동",
+      "name": "invalid exit keeps room",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "feature": "샷건",
+      "name": "shoot: shells -1 exactly, taser/flares unchanged",
+      "status": "pass",
+      "detail": "{\"b\":{\"room\":\"lobby\",\"hp\":100,\"shells\":3,\"flares\":2,\"taserCharges\":3,\"hasCard\":false,\"raptorHp\":45,\"raptorsAlive\":true,\"over\":false,\"won\":false,\"shotsFired\":0,\"shocksUsed\":0,\"stunRecovery\":false},\"a\":{\"room\":\"lobby\",\"hp\":92,\"shells\":2,\"flares\":2,\"taserCharges\":3,\"hasCard\":false,\"raptorHp\":25,\"raptorsAlive\":true,\"over\":false,\"won\":false,\"shotsFired\":1,\"shocksUsed\":0,\"stunRecovery\":false}}"
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "shock: taserCharges -1 exactly, shells/flares unchanged",
+      "status": "pass",
+      "detail": "{\"b\":{\"room\":\"lobby\",\"hp\":100,\"shells\":3,\"flares\":2,\"taserCharges\":3,\"hasCard\":false,\"raptorHp\":45,\"raptorsAlive\":true,\"over\":false,\"won\":false,\"shotsFired\":0,\"shocksUsed\":0,\"stunRecovery\":false},\"a\":{\"room\":\"lobby\",\"hp\":100,\"shells\":3,\"flares\":2,\"taserCharges\":2,\"hasCard\":false,\"raptorHp\":31,\"raptorsAlive\":true,\"over\":false,\"won\":false,\"shotsFired\":0,\"shocksUsed\":1,\"stunRecovery\":true}}"
+    },
+    {
+      "feature": "조명탄",
+      "name": "flare: flares -1 exactly, shells/taser unchanged",
+      "status": "pass",
+      "detail": "{\"b\":{\"room\":\"lobby\",\"hp\":100,\"shells\":3,\"flares\":2,\"taserCharges\":3,\"hasCard\":false,\"raptorHp\":45,\"raptorsAlive\":true,\"over\":false,\"won\":false,\"shotsFired\":0,\"shocksUsed\":0,\"stunRecovery\":false},\"a\":{\"room\":\"lobby\",\"hp\":100,\"shells\":3,\"flares\":1,\"taserCharges\":3,\"hasCard\":false,\"raptorHp\":45,\"raptorsAlive\":true,\"over\":false,\"won\":false,\"shotsFired\":0,\"shocksUsed\":0,\"stunRecovery\":false}}"
+    },
+    {
+      "feature": "카드 획득",
+      "name": "take card: hasCard true (inventory +1) and pickup message",
+      "status": "pass",
+      "detail": "{\"b\":false,\"a\":true,\"msgs\":\"> take card\\nYou pocket the Calderyn Security Passcard. Its magnetic strip is still warm.\"}"
+    },
+    {
+      "feature": "카드 획득",
+      "name": "take card: only hasCard changed",
+      "status": "pass",
+      "detail": "{\"room\":\"lab\",\"hp\":92,\"shells\":1,\"flares\":2,\"taserCharges\":3,\"hasCard\":true,\"raptorHp\":0,\"raptorsAlive\":false,\"over\":false,\"won\":false,\"shotsFired\":2,\"shocksUsed\":0,\"stunRecovery\":false}"
+    },
+    {
+      "feature": "카드 획득",
+      "name": "inventory lists the card",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "feature": "카드 획득",
+      "name": "duplicate take card: still one card and already-carried message",
+      "status": "pass",
+      "detail": "\"> take card\\nYou already carry the Calderyn Security Passcard.\""
+    },
+    {
+      "feature": "카드 획득",
+      "name": "duplicate take card: state otherwise unchanged",
+      "status": "pass",
+      "detail": "{\"room\":\"lab\",\"hp\":92,\"shells\":1,\"flares\":2,\"taserCharges\":3,\"hasCard\":true,\"raptorHp\":0,\"raptorsAlive\":false,\"over\":false,\"won\":false,\"shotsFired\":2,\"shocksUsed\":0,\"stunRecovery\":false}"
+    },
+    {
+      "feature": "관제실 승리",
+      "name": "control room win: won true in control",
+      "status": "pass",
+      "detail": "{\"room\":\"control\",\"hp\":92,\"shells\":1,\"flares\":2,\"taserCharges\":3,\"hasCard\":true,\"raptorHp\":0,\"raptorsAlive\":false,\"over\":false,\"won\":true,\"shotsFired\":2,\"shocksUsed\":0,\"stunRecovery\":false}"
+    },
+    {
+      "feature": "관제실 승리",
+      "name": "control room win: victory text contains BRAND.island",
+      "status": "pass",
+      "detail": "\"Ashfen Island\""
+    },
+    {
+      "feature": "발전소 승리",
+      "name": "generator win: won true in generator",
+      "status": "pass",
+      "detail": "{\"room\":\"generator\",\"hp\":92,\"shells\":1,\"flares\":2,\"taserCharges\":3,\"hasCard\":true,\"raptorHp\":0,\"raptorsAlive\":false,\"over\":false,\"won\":true,\"shotsFired\":2,\"shocksUsed\":0,\"stunRecovery\":false}"
+    },
+    {
+      "feature": "발전소 승리",
+      "name": "generator win: victory text contains BRAND.island",
+      "status": "pass",
+      "detail": "\"Ashfen Island\""
+    },
+    {
+      "feature": "관제실 승리",
+      "name": "restore power without card: reject message",
+      "status": "pass",
+      "detail": "\"> restore power\\n$ sudo ./restore_power.sh\\nACCESS DENIED: Calderyn security passcard required.\""
+    },
+    {
+      "feature": "관제실 승리",
+      "name": "restore power without card: state unchanged",
+      "status": "pass",
+      "detail": "{\"room\":\"control\",\"hp\":92,\"shells\":1,\"flares\":2,\"taserCharges\":3,\"hasCard\":false,\"raptorHp\":0,\"raptorsAlive\":false,\"over\":false,\"won\":false,\"shotsFired\":2,\"shocksUsed\":0,\"stunRecovery\":false}"
+    },
+    {
+      "feature": "관제실 승리",
+      "name": "restore power with card in wrong room (lobby): reject message",
+      "status": "pass",
+      "detail": "\"> restore power\\nRestore power at the Main Control Room or Geothermal Generator.\""
+    },
+    {
+      "feature": "관제실 승리",
+      "name": "restore power with card in wrong room: state unchanged",
+      "status": "pass",
+      "detail": "{\"room\":\"lobby\",\"hp\":92,\"shells\":1,\"flares\":2,\"taserCharges\":3,\"hasCard\":true,\"raptorHp\":0,\"raptorsAlive\":false,\"over\":false,\"won\":false,\"shotsFired\":2,\"shocksUsed\":0,\"stunRecovery\":false}"
+    },
+    {
+      "feature": "관제실 승리",
+      "name": "restore power with card in lab: reject message",
+      "status": "pass",
+      "detail": "\"> restore power\\nRestore power at the Main Control Room or Geothermal Generator.\""
+    },
+    {
+      "feature": "관제실 승리",
+      "name": "restore power with card in lab: state unchanged",
+      "status": "pass",
+      "detail": "{\"room\":\"lab\",\"hp\":92,\"shells\":1,\"flares\":2,\"taserCharges\":3,\"hasCard\":true,\"raptorHp\":0,\"raptorsAlive\":false,\"over\":false,\"won\":false,\"shotsFired\":2,\"shocksUsed\":0,\"stunRecovery\":false}"
+    },
+    {
+      "feature": "게임 오버와 재시작",
+      "name": "game over reached with mutated state",
+      "status": "pass",
+      "detail": "{\"room\":\"lobby\",\"hp\":0,\"shells\":2,\"flares\":1,\"taserCharges\":3,\"hasCard\":true,\"raptorHp\":25,\"raptorsAlive\":true,\"over\":true,\"won\":false,\"shotsFired\":1,\"shocksUsed\":0,\"stunRecovery\":false}"
+    },
+    {
+      "feature": "게임 오버와 재시작",
+      "name": "restart after game over: fields equal initial values",
+      "status": "pass",
+      "detail": "{\"room\":\"lobby\",\"hp\":100,\"shells\":3,\"flares\":2,\"taserCharges\":3,\"hasCard\":false,\"over\":false,\"won\":false,\"stunRecovery\":false}"
+    },
+    {
+      "feature": "이름 일관성",
+      "name": "document.title equals BRAND.title",
+      "status": "pass",
+      "detail": "\"Dinosaur Survival MUD 3D\""
+    },
+    {
+      "feature": "이름 일관성",
+      "name": "#brand-header text equals expected",
+      "status": "pass",
+      "detail": "\"⚡ DINOSAUR SURVIVAL MUD 3D :: ASHFEN ISLAND\""
+    },
+    {
+      "feature": "이름 일관성",
+      "name": "static <title> literal equals BRAND.title",
+      "status": "pass",
+      "detail": "\"Dinosaur Survival MUD 3D\""
+    },
+    {
+      "feature": "이름 일관성",
+      "name": "intro contains a BRAND value",
+      "status": "pass",
+      "detail": "\"> west\\n== MAIN CONTROL ROOM ==\\nA wall of CRT monitors glows cold blue. The Calderyn Biosciences mainframe terminal waits for authorization to restore the power grid.\\nThe terminal demands a Calderyn pa\""
+    },
+    {
+      "feature": "이름 일관성",
+      "name": "intro: 0 legacy terms",
+      "status": "pass",
+      "detail": "[]"
+    },
+    {
+      "feature": "이름 일관성",
+      "name": "room name unchanged: lobby",
+      "status": "pass",
+      "detail": "\"VISITOR CENTER LOBBY\""
+    },
+    {
+      "feature": "이름 일관성",
+      "name": "room name unchanged: lab",
+      "status": "pass",
+      "detail": "\"GENETICS LABORATORY\""
+    },
+    {
+      "feature": "이름 일관성",
+      "name": "room name unchanged: control",
+      "status": "pass",
+      "detail": "\"MAIN CONTROL ROOM\""
+    },
+    {
+      "feature": "이름 일관성",
+      "name": "room name unchanged: pen",
+      "status": "pass",
+      "detail": "\"RAPTOR PEN\""
+    },
+    {
+      "feature": "이름 일관성",
+      "name": "room name unchanged: generator",
+      "status": "pass",
+      "detail": "\"GEOTHERMAL GENERATOR\""
+    },
+    {
+      "feature": "이름 일관성",
+      "name": "describeRoom lobby hasCard=false: 0 legacy terms",
+      "status": "pass",
+      "detail": "[]"
+    },
+    {
+      "feature": "이름 일관성",
+      "name": "describeRoom lobby hasCard=true: 0 legacy terms",
+      "status": "pass",
+      "detail": "[]"
+    },
+    {
+      "feature": "이름 일관성",
+      "name": "describeRoom lab hasCard=false: 0 legacy terms",
+      "status": "pass",
+      "detail": "[]"
+    },
+    {
+      "feature": "이름 일관성",
+      "name": "describeRoom lab hasCard=true: 0 legacy terms",
+      "status": "pass",
+      "detail": "[]"
+    },
+    {
+      "feature": "이름 일관성",
+      "name": "describeRoom control hasCard=false: 0 legacy terms",
+      "status": "pass",
+      "detail": "[]"
+    },
+    {
+      "feature": "이름 일관성",
+      "name": "describeRoom control hasCard=true: 0 legacy terms",
+      "status": "pass",
+      "detail": "[]"
+    },
+    {
+      "feature": "이름 일관성",
+      "name": "describeRoom pen hasCard=false: 0 legacy terms",
+      "status": "pass",
+      "detail": "[]"
+    },
+    {
+      "feature": "이름 일관성",
+      "name": "describeRoom pen hasCard=true: 0 legacy terms",
+      "status": "pass",
+      "detail": "[]"
+    },
+    {
+      "feature": "이름 일관성",
+      "name": "describeRoom generator hasCard=false: 0 legacy terms",
+      "status": "pass",
+      "detail": "[]"
+    },
+    {
+      "feature": "이름 일관성",
+      "name": "describeRoom generator hasCard=true: 0 legacy terms",
+      "status": "pass",
+      "detail": "[]"
+    },
+    {
+      "feature": "이름 일관성",
+      "name": "describeRoom across the set contains a BRAND value",
+      "status": "pass",
+      "detail": "10"
+    },
+    {
+      "feature": "이름 일관성",
+      "name": "pickup text contains BRAND.card",
+      "status": "pass",
+      "detail": "\"> take card\\nYou pocket the Calderyn Security Passcard. Its magnetic strip is still warm.\""
+    },
+    {
+      "feature": "이름 일관성",
+      "name": "inventory text contains BRAND.card",
+      "status": "pass",
+      "detail": "\"> inventory\\nINVENTORY:\\n- SPAS-12 Shotgun (1 Shells)\\n- Road Flare (2)\\n- Cattle Prod Taser (3 charges)\\n- Calderyn Security Passcard\""
+    },
+    {
+      "feature": "이름 일관성",
+      "name": "victory text contains BRAND.island",
+      "status": "pass",
+      "detail": "\"Ashfen Island\""
+    },
+    {
+      "feature": "이름 일관성",
+      "name": "full playthrough transcript: 0 legacy terms",
+      "status": "pass",
+      "detail": "[]"
+    },
+    {
+      "feature": "이름 일관성",
+      "name": "reject text contains company",
+      "status": "pass",
+      "detail": "\"> restore power\\n$ sudo ./restore_power.sh\\nACCESS DENIED: Calderyn security passcard required.\""
+    },
+    {
+      "feature": "이름 일관성",
+      "name": "reject text: 0 legacy terms",
+      "status": "pass",
+      "detail": "[]"
+    },
+    {
+      "feature": "이름 일관성",
+      "name": "game over reached for text check",
+      "status": "pass",
+      "detail": "{\"room\":\"lobby\",\"hp\":0,\"shells\":2,\"flares\":2,\"taserCharges\":3,\"hasCard\":false,\"raptorHp\":25,\"raptorsAlive\":true,\"over\":true,\"won\":false,\"shotsFired\":1,\"shocksUsed\":0,\"stunRecovery\":false}"
+    },
+    {
+      "feature": "이름 일관성",
+      "name": "game-over transcript: 0 legacy terms",
+      "status": "pass",
+      "detail": "[]"
+    },
+    {
+      "feature": "이름 일관성",
+      "name": "SYSTEM_PROMPT includes BRAND.title, island and company",
+      "status": "pass",
+      "detail": "\"You are the AI Dungeon Master and World Engine for a retro 3D dinosaur survival text MUD \\\"Dinosaur Survival MUD 3D\\\" set on Ashfen Island, a research island run by Calderyn Biosciences. Never mention o\""
+    },
+    {
+      "feature": "이름 일관성",
+      "name": "SYSTEM_PROMPT: 0 legacy terms",
+      "status": "pass",
+      "detail": "[]"
+    },
+    {
+      "feature": "이름 일관성",
+      "name": "NARRATOR_PROMPT includes BRAND.title, island and company",
+      "status": "pass",
+      "detail": "\"You are the AI narrator for \\\"Dinosaur Survival MUD 3D\\\" on Ashfen Island, a facility of Calderyn Biosciences. Write exactly 2 atmospheric, tense sentences describing the current chamber, reflecting the\""
+    },
+    {
+      "feature": "이름 일관성",
+      "name": "NARRATOR_PROMPT: 0 legacy terms",
+      "status": "pass",
+      "detail": "[]"
+    },
+    {
+      "feature": "이름 일관성",
+      "name": "legacy-word card command -> unknown-command hint",
+      "status": "pass",
+      "detail": "\"> <legacy card cmd>\\nUnknown command \\\"<legacy card cmd>\\\". Try: look, north/east/west/south, shoot, shock, flare, take card, restore power, inventory, help.\""
+    },
+    {
+      "feature": "이름 일관성",
+      "name": "legacy-word card command: hasCard unchanged",
+      "status": "pass",
+      "detail": "false"
+    },
+    {
+      "feature": "이름 일관성",
+      "name": "\"take passcard\" classified TAKE_CARD",
+      "status": "pass",
+      "detail": "\"TAKE_CARD\""
+    },
+    {
+      "feature": "이름 일관성",
+      "name": "\"take security passcard\" classified TAKE_CARD",
+      "status": "pass",
+      "detail": "\"TAKE_CARD\""
+    },
+    {
+      "feature": "이름 일관성",
+      "name": "\"take passcard\" in lab gives the card",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "feature": "이름 일관성",
+      "name": "\"take security passcard\" in lab gives the card",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "7 alternate 1: stun (no counter, recovery set)",
+      "status": "pass",
+      "detail": "{\"room\":\"lobby\",\"hp\":100,\"shells\":3,\"flares\":2,\"taserCharges\":2,\"hasCard\":false,\"raptorHp\":31,\"raptorsAlive\":true,\"over\":false,\"won\":false,\"shotsFired\":0,\"shocksUsed\":1,\"stunRecovery\":true}"
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "7 alternate 2: recovery turn deals damage and takes counter, no stun",
+      "status": "pass",
+      "detail": "{\"room\":\"lobby\",\"hp\":90,\"shells\":3,\"flares\":2,\"taserCharges\":1,\"hasCard\":false,\"raptorHp\":17,\"raptorsAlive\":true,\"over\":false,\"won\":false,\"shotsFired\":0,\"shocksUsed\":2,\"stunRecovery\":false}"
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "7 alternate 3: stun again, no counter",
+      "status": "pass",
+      "detail": "{\"room\":\"lobby\",\"hp\":90,\"shells\":3,\"flares\":2,\"taserCharges\":0,\"hasCard\":false,\"raptorHp\":3,\"raptorsAlive\":true,\"over\":false,\"won\":false,\"shotsFired\":0,\"shocksUsed\":3,\"stunRecovery\":true}"
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "7 recovery turn (shoot): processed normally, counter applied, stunRecovery cleared",
+      "status": "pass",
+      "detail": "{\"room\":\"lobby\",\"hp\":90,\"shells\":2,\"flares\":2,\"taserCharges\":2,\"hasCard\":false,\"raptorHp\":11,\"raptorsAlive\":true,\"over\":false,\"won\":false,\"shotsFired\":1,\"shocksUsed\":1,\"stunRecovery\":false}"
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "7 recovery turn (flare): blinds without counter, stunRecovery cleared",
+      "status": "pass",
+      "detail": "{\"room\":\"lobby\",\"hp\":100,\"shells\":3,\"flares\":1,\"taserCharges\":2,\"hasCard\":false,\"raptorHp\":31,\"raptorsAlive\":true,\"over\":false,\"won\":false,\"shotsFired\":0,\"shocksUsed\":1,\"stunRecovery\":false}"
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "7 recovery turn (flare): raptor fx mode is blind",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "7 lethal shock: raptorsAlive false, no stun, no counter (HP unchanged by the shock)",
+      "status": "pass",
+      "detail": "{\"b\":{\"room\":\"lobby\",\"hp\":90,\"shells\":2,\"flares\":2,\"taserCharges\":3,\"hasCard\":false,\"raptorHp\":10,\"raptorsAlive\":true,\"over\":false,\"won\":false,\"shotsFired\":1,\"shocksUsed\":0,\"stunRecovery\":false},\"s\":{\"room\":\"lobby\",\"hp\":90,\"shells\":2,\"flares\":2,\"taserCharges\":2,\"hasCard\":false,\"raptorHp\":0,\"raptorsAlive\":false,\"over\":false,\"won\":false,\"shotsFired\":1,\"shocksUsed\":1,\"stunRecovery\":false}}"
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "7 empty taser: state deep-equal to before",
+      "status": "pass",
+      "detail": "{\"room\":\"lobby\",\"hp\":100,\"shells\":3,\"flares\":2,\"taserCharges\":0,\"hasCard\":false,\"raptorHp\":45,\"raptorsAlive\":true,\"over\":false,\"won\":false,\"shotsFired\":0,\"shocksUsed\":0,\"stunRecovery\":false}"
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "7 empty taser: exactly one fail message",
+      "status": "pass",
+      "detail": "\"> shock\\nThe taser is out of charges.\""
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "7 stun log line appears exactly once per stun",
+      "status": "pass",
+      "detail": "\"> shock\\nZZZZAP! The cattle prod arcs cyan lightning through a raptor for 14 damage.\\nStunned by the voltage, the raptors convulse and cannot counter-attack this turn. Pack HP 31/45.\""
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "7 raptor fx mode is stun right after the stun",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "7 STUN_SECONDS (index.html source) within 1.0-1.4",
+      "status": "pass",
+      "detail": "1.2"
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "7 recovery shock logs no stun line",
+      "status": "pass",
+      "detail": "\"> shock\\nZZZZAP! The cattle prod arcs cyan lightning through a raptor for 14 damage.\\nThe raptors lunge back and rake you for 10 damage! Pack HP 17/45.\""
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "7 stun precondition: first shock sets recovery",
+      "status": "pass",
+      "detail": "{\"room\":\"lobby\",\"hp\":10,\"shells\":3,\"flares\":2,\"taserCharges\":2,\"hasCard\":false,\"raptorHp\":31,\"raptorsAlive\":true,\"over\":false,\"won\":false,\"shotsFired\":0,\"shocksUsed\":1,\"stunRecovery\":true}"
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "7 game over: stunRecovery false when over",
+      "status": "pass",
+      "detail": "{\"room\":\"lobby\",\"hp\":0,\"shells\":3,\"flares\":2,\"taserCharges\":1,\"hasCard\":false,\"raptorHp\":17,\"raptorsAlive\":true,\"over\":true,\"won\":false,\"shotsFired\":0,\"shocksUsed\":2,\"stunRecovery\":false}"
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "7 resolveStunTurn: shock on live pack stuns",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "7 resolveStunTurn: shock during recovery does not stun, counter allowed",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "7 resolveStunTurn: lethal shock -> all false",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "7 resolveStunTurn: shoot on live pack -> counter allowed, no stun",
+      "status": "pass",
+      "detail": ""
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "7 resolveStunTurn: bad input undefined -> all false, no throw",
+      "status": "pass",
+      "detail": "{\"stunned\":false,\"nextStunRecovery\":false,\"counterAllowed\":false}"
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "7 resolveStunTurn: bad input null -> all false, no throw",
+      "status": "pass",
+      "detail": "{\"stunned\":false,\"nextStunRecovery\":false,\"counterAllowed\":false}"
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "7 resolveStunTurn: bad input 'x' -> all false, no throw",
+      "status": "pass",
+      "detail": "{\"stunned\":false,\"nextStunRecovery\":false,\"counterAllowed\":false}"
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "7 resolveStunTurn: bad input 42 -> all false, no throw",
+      "status": "pass",
+      "detail": "{\"stunned\":false,\"nextStunRecovery\":false,\"counterAllowed\":false}"
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "7 resolveStunTurn: bad input { type: 'shock', raptorHp: 'abc' } -> all false, no throw",
+      "status": "pass",
+      "detail": "{\"stunned\":false,\"nextStunRecovery\":false,\"counterAllowed\":false}"
+    },
+    {
+      "feature": "테이저와 스턴",
+      "name": "7 resolveStunTurn: bad input { type: 'shock', raptorHp: NaN } -> all false, no throw",
+      "status": "pass",
+      "detail": "{\"stunned\":false,\"nextStunRecovery\":false,\"counterAllowed\":false}"
+    },
+    {
+      "feature": null,
+      "name": "0 console errors / uncaught exceptions",
+      "status": "pass",
+      "detail": "[]"
+    }
+  ]
+}

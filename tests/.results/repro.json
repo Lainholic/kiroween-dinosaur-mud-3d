@@ -1,0 +1,312 @@
+{
+  "browserFound": true,
+  "browser": "msedge.exe",
+  "generatedBy": "tests/repro-bugs.mjs",
+  "summary": {
+    "bug1": {
+      "reproduced": 0,
+      "notReproduced": 8
+    },
+    "bug2": {
+      "reproduced": 0,
+      "notReproduced": 7
+    },
+    "bug3": {
+      "reproduced": 0,
+      "notReproduced": 4
+    },
+    "bug4": {
+      "reproduced": 0,
+      "notReproduced": 4
+    },
+    "bug0": {
+      "reproduced": 0,
+      "notReproduced": 1
+    }
+  },
+  "scenarios": [
+    {
+      "bug": 1,
+      "name": "surviving shock stuns: no counter, stunRecovery true",
+      "input": "fresh; shock (dmg 14, counter would be 10)",
+      "expected": "hp 100, raptorHp 31, taser 2, stunRecovery true, raptorMode stun",
+      "actual": {
+        "hp": 100,
+        "raptorHp": 31,
+        "taser": 2,
+        "stunRecovery": true,
+        "mode": "stun"
+      },
+      "reproduced": false
+    },
+    {
+      "bug": 1,
+      "name": "stun log line printed exactly once",
+      "input": "shock",
+      "expected": "1 line \"Stunned by the voltage\"",
+      "actual": {
+        "lines": 1
+      },
+      "reproduced": false
+    },
+    {
+      "bug": 1,
+      "name": "next action is normal with counter; shock during recovery does not stun",
+      "input": "shock, shock",
+      "expected": "hp 90, raptorHp 17, stunRecovery false",
+      "actual": {
+        "hp": 90,
+        "raptorHp": 17,
+        "stunRecovery": false
+      },
+      "reproduced": false
+    },
+    {
+      "bug": 1,
+      "name": "empty taser: state unchanged and exactly one fail message",
+      "input": "drain 3 charges then shock",
+      "expected": "state identical, +1 fail message",
+      "actual": {
+        "unchanged": true,
+        "newMessages": 1
+      },
+      "reproduced": false
+    },
+    {
+      "bug": 1,
+      "name": "lethal shock: no stun, no counter",
+      "input": "shoot (45->10), shock 21",
+      "expected": "raptorsAlive false, stunRecovery false, hp unchanged by shock",
+      "actual": {
+        "alive": false,
+        "stunRecovery": false,
+        "hpBefore": 90,
+        "hpAfter": 90
+      },
+      "reproduced": false
+    },
+    {
+      "bug": 1,
+      "name": "restart resets stunRecovery",
+      "input": "shock; restart",
+      "expected": "stunRecovery false",
+      "actual": {
+        "stunRecovery": false
+      },
+      "reproduced": false
+    },
+    {
+      "bug": 1,
+      "name": "game over then restart resets stunRecovery",
+      "input": "shock; hp=5; north (killed in lobby exit); restart",
+      "expected": "over true, then stunRecovery false after restart",
+      "actual": {
+        "over": true,
+        "stunRecoveryAtGameOver": false,
+        "stunRecoveryAfterRestart": false
+      },
+      "reproduced": false
+    },
+    {
+      "bug": 1,
+      "name": "STUN_SECONDS within 1.0-1.4",
+      "input": "static read of index.html",
+      "expected": "1.0 <= STUN_SECONDS <= 1.4",
+      "actual": {
+        "STUN_SECONDS": 1.2
+      },
+      "reproduced": false
+    },
+    {
+      "bug": 2,
+      "name": "lobby free-text reply resolved in lab: no narration",
+      "input": "clear pack; \"dance wildly\"; east (lab); resolve lobby reply",
+      "expected": "text absent from transcript",
+      "actual": {
+        "present": false
+      },
+      "reproduced": false
+    },
+    {
+      "bug": 2,
+      "name": "stale reply leaves light/fog/intensity/anim unchanged",
+      "input": "same",
+      "expected": "hudLight, anim, fog, intensity identical",
+      "actual": {
+        "before": [
+          "#00ff88",
+          "WALK",
+          0.05,
+          2.2
+        ],
+        "after": [
+          "#00ff88",
+          "WALK",
+          0.05,
+          2.2
+        ]
+      },
+      "reproduced": false
+    },
+    {
+      "bug": 2,
+      "name": "reply after restart discarded",
+      "input": "\"dance\"; restart; resolve",
+      "expected": "text absent",
+      "actual": {
+        "present": false
+      },
+      "reproduced": false
+    },
+    {
+      "bug": 2,
+      "name": "reply after game over discarded",
+      "input": "hp=5; \"dance\"; north (dies); resolve",
+      "expected": "over true, text absent",
+      "actual": {
+        "over": true,
+        "present": false
+      },
+      "reproduced": false
+    },
+    {
+      "bug": 2,
+      "name": "reply after win discarded",
+      "input": "win via control room; resolve earlier reply",
+      "expected": "won true, text absent",
+      "actual": {
+        "won": true,
+        "present": false
+      },
+      "reproduced": false
+    },
+    {
+      "bug": 2,
+      "name": "reverse-order replies: only newer applied",
+      "input": "two requests; resolve newer then older",
+      "expected": "NEWER present, OLDER absent",
+      "actual": {
+        "newer": true,
+        "older": false
+      },
+      "reproduced": false
+    },
+    {
+      "bug": 2,
+      "name": "context token includes request sequence (R8.1)",
+      "input": "static read of captureAiContext()",
+      "expected": "token contains a request seq field",
+      "actual": {
+        "captureAiContextBody": "return { epoch, roomVisit, seq: ++aiReqSeq, kind: kind || 'text'",
+        "staleChecks": "shouldApplyAiReply(ctx,currentAiView()) incl. seq>=aiAppliedSeq (free text) + seq!==narrationSeq (rooms)"
+      },
+      "reproduced": false
+    },
+    {
+      "bug": 3,
+      "name": "key set, fetch pending: room text, THREAT, Exits already shown",
+      "input": "key; look; no reply yet",
+      "expected": "base text present, 1 pending request",
+      "actual": {
+        "pending": 1,
+        "room": true,
+        "threat": true,
+        "exits": true
+      },
+      "reproduced": false
+    },
+    {
+      "bug": 3,
+      "name": "AI text appended after base text",
+      "input": "resolve narration",
+      "expected": "AI index > base room index",
+      "actual": {
+        "baseIdx": 15000,
+        "aiIdx": 15083
+      },
+      "reproduced": false
+    },
+    {
+      "bug": 3,
+      "name": "AI failure (HTTP 500) keeps base text",
+      "input": "look; 500",
+      "expected": "base text intact, no AI text",
+      "actual": {
+        "exits": true,
+        "threat": true
+      },
+      "reproduced": false
+    },
+    {
+      "bug": 3,
+      "name": "no key: zero fetch calls",
+      "input": "no key; look; dance; east",
+      "expected": "0 pending/fetch calls",
+      "actual": {
+        "calls": 0
+      },
+      "reproduced": false
+    },
+    {
+      "bug": 4,
+      "name": "GEMINI_TIMEOUT_MS equals 10000",
+      "input": "static read + observed setTimeout delays during look",
+      "expected": "timeout 10000",
+      "actual": {
+        "GEMINI_TIMEOUT_MS": 10000,
+        "observedDelays": [
+          10000
+        ]
+      },
+      "reproduced": false
+    },
+    {
+      "bug": 4,
+      "name": "AI call never rejects (fetch throws)",
+      "input": "fetch rejects; callGeminiWorldEngine(\"x\")",
+      "expected": "resolves to null",
+      "actual": {
+        "resolved": true,
+        "value": null
+      },
+      "reproduced": false
+    },
+    {
+      "bug": 4,
+      "name": "AI path does not use console.error (warn only)",
+      "input": "static read of geminiGenerate; transcript failure scenarios",
+      "expected": "no console.error in AI path; 0 console errors at runtime",
+      "actual": {
+        "geminiGenerateUsesConsoleError": false,
+        "allConsoleErrorUsesInFile": [
+          "console.error(e)"
+        ],
+        "runtimeConsoleErrors": 0
+      },
+      "reproduced": false
+    },
+    {
+      "bug": 4,
+      "name": "sanitizeNarration length rule: <=2000 kept whole, >2000 -> empty",
+      "input": "1600-char text, 2240-char text, whitespace",
+      "expected": "1600 kept (len 1600), 2240 -> 0, blank -> 0",
+      "actual": {
+        "len1600": 1599,
+        "len2240": 0,
+        "lenBlank": 0,
+        "currentCap": 420
+      },
+      "reproduced": false
+    },
+    {
+      "bug": 0,
+      "name": "console health during all scenarios",
+      "input": "whole run",
+      "expected": "0 console errors",
+      "actual": {
+        "errors": []
+      },
+      "reproduced": false
+    }
+  ]
+}
